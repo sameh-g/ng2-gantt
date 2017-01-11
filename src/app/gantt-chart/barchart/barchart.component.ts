@@ -11,8 +11,8 @@ export class BarchartComponent implements OnInit {
   constructor() { }
 
   private _from: number=0;
-  private _to: string='10%';
-  private _color: string="#333";
+  private _to: string='';
+  private _color: string="";
 
   ngOnInit() {
   }

@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 })
 export class GanttChartComponent implements OnInit {
+  
   color: string = "#000";
   from: string = '';
   to: string = '90%';
