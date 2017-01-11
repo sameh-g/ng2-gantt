@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Gantt } from "./ganttModel"
 
 @Component({
     selector: 'app-root',
@@ -9,9 +10,15 @@ export class AppComponent {
     title = 'app works!';
     plotband: any;
 
+    gantt1: Gantt;
+    gantt2: Gantt;
+    gantt3: Gantt;
+
     constructor() {
-        this.plotband = this.generatePlotBands(1);
-        this.getChartOptions(this.plotband, 1);
+        console.log('kkkkkconstrcu')
+        this.gantt1 = new Gantt("01/01/2016", "10/12/2016", "03/15/2016", "12/23/2016", 8);
+        this.gantt2 = new Gantt("02/01/2016", "10/12/2016", "03/15/2016", "12/23/2016", 8);
+        this.gantt3 = new Gantt("03/01/2016", "10/12/2016", "03/15/2016", "12/23/2016", 8);
     }
     options: Object;
 
@@ -119,14 +126,14 @@ export class AppComponent {
         };
     }
     onchange(): void {
-        this.chart=null;
+        this.chart = null;
         // this.chart.options.yAxis[0].plotBands[0].borderColor="#FFF"
         this.generatePlotBands(20)
         this.getChartOptions(this.plotband, 8);
     }
-    chart:Object;
+    chart: Object;
     saveInstance(chartInstance): void {
-        this.chart=chartInstance;
+        this.chart = chartInstance;
 
         console.log("current chart", chartInstance)
         console.log("plotoptions yAxis plotBands", chartInstance.options.yAxis[0].plotBands)

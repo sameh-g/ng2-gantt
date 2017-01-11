@@ -13,11 +13,15 @@ export class GanttChartComponent implements OnInit {
   /**
    *
    */
+  _gantt:Gantt;
   constructor() {
-    let gantt1 = new Gantt("03/01/2016", "10/12/2016", "03/15/2016", "12/23/2016", 8);
-    this.calculateGantt(gantt1)
-  }
 
+  }
+ @Input('gantt') set gantt(gantt) {
+    this._gantt = gantt;
+    this.calculateGantt(this._gantt)
+    console.log(gantt)
+  }
   //Bar1
   color: string = "#000";
   position: string = '';
