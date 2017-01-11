@@ -10,7 +10,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class GanttChartComponent implements OnInit {
   color: string = "#000";
   from: string = '';
-  to: string = '10%';
+  to: string = '90%';
 
   color1: string = "#ff0000";
   from1: string = '';
@@ -18,11 +18,11 @@ export class GanttChartComponent implements OnInit {
 
   color2: string = "#7CFC00	";
   from2: string = '';
-  to2: string = '70%';
+  to2: string = '50%';
 
   color3: string = "#BDB76B";
   from3: string = '';
-  to3: string = '40%';
+  to3: string = '30%';
 
   constructor() { }
 
