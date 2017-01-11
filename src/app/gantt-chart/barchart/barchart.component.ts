@@ -10,8 +10,8 @@ export class BarchartComponent implements OnInit {
 
   constructor() { }
 
-  private _from: number=0;
-  private _to: string='';
+  private _position: string='';
+  private _width: string='';
   private _color: string="";
 
   ngOnInit() {
@@ -23,13 +23,13 @@ export class BarchartComponent implements OnInit {
     console.log(color)
   }
   
- @Input('from') set from(from) {
-    this._from = from;
-    console.log(from)
+ @Input('position') set from(position) {
+    this._position = position;
+    console.log(position)
   }
- @Input('to') set to(to) {
-    this._to = to;
-    console.log(to)
+ @Input('width') set width(width) {
+    this._width = width;
+    console.log("mina..",width)
   }
 
 }
