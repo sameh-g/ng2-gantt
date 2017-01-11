@@ -29,4 +29,10 @@ export class GanttChartComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  //This method should return an object with {color and Width for each 4 bar charts per one..} calculated 
+  calculateGantt():any{
+
+  }
+
 }
