@@ -86,7 +86,7 @@ export class GanttChartComponent implements OnInit {
     console.log('position2', this.position2)
     console.log('width2 ', this.width2)
     console.log('width3 ', this.width3)
-    console.log('  this.StartProgress ',   this.StartProgress)
+    console.log('this.StartProgress',   this.StartProgress)
     console.log('gannt.Progress ', gannt.Progress)
 
 
