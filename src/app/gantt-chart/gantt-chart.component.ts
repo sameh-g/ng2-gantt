@@ -75,7 +75,6 @@ export class GanttChartComponent implements OnInit {
     this.StartProgress, gannt.ForcastDay)+this.StartProgress))
 
     //Case Forcast
-
     this.position4 = this.getPositionPercentage(gannt.EndActualDay);
     this.width4 = this.getPositionPercentage(gannt.ForcastDay - gannt.EndActualDay);
 
