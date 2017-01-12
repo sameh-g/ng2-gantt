@@ -21,22 +21,22 @@ private  _gantt:Gantt;
     console.log(gantt)
   }
   //Bar1
-  color1: string = "#000";
+  color1: string = "#99cc99";
   position1: string = '';
   width1: string = '';
 
   //Bar2
-  color2: string = "#ff0000";
+  color2: string = "#33cc33";//#ff0000
   position2: string = '';
   width2: string = '';
 
   //Bar3
-  color3: string = "#7CFC00	";
+  color3: string = "#669933";
   position3: string = '';
   width3: string = '';
 
   //Bar4
-  color4: string = "#BDB76B";
+  color4: string = "#990000";
   position4: string = '';
   width4: string = '';
 
