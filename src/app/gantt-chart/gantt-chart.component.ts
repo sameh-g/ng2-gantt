@@ -40,6 +40,9 @@ export class GanttChartComponent implements OnInit {
   position4: string = '';
   width4: string = '';
 
+  StartProgress: number = 0;
+  EndProgress: number = 0;
+
   ngOnInit() {
   }
 
@@ -47,48 +50,46 @@ export class GanttChartComponent implements OnInit {
   //This method should return an object with {color and Width for each 4 bar charts per one..} calculated 
   calculateGantt(gannt: Gantt): any {
 
-    var StartProgress: number = 0;
-    var EndProgress: number = 0;
-
     //Calculated Bar1
     if (gannt.StartPlannedDay > gannt.StartActualDay) {
       this.width1 = this.getPositionPercentage(gannt.StartPlannedDay - gannt.StartActualDay);
       this.position1 = this.getPositionPercentage(gannt.StartActualDay);
-
-      StartProgress = gannt.StartPlannedDay;
+      this.StartProgress = gannt.StartPlannedDay;
     }
     else {
       this.width1 = this.getPositionPercentage(gannt.StartActualDay - gannt.StartPlannedDay);
       this.position1 = this.getPositionPercentage(gannt.StartPlannedDay);
-      StartProgress = gannt.StartActualDay;
-
-      console.log('Bar1 postion', this.position1)
-      console.log('Bar1 width0', this.width1)
-    }
-
-    //Calculated Bar3
-
-    if (gannt.EndPlannedDay > gannt.EndActualDay) {
-      this.width3 = this.getPositionPercentage(gannt.EndPlannedDay - gannt.EndActualDay);
-      this.position3 = this.getPositionPercentage(gannt.EndActualDay);
-      EndProgress = gannt.EndActualDay;
-    }
-    else {
-      this.width3 = this.getPositionPercentage(gannt.EndActualDay - gannt.EndPlannedDay);
-      this.position3 = this.getPositionPercentage(gannt.EndPlannedDay);
-
-      //Calculated Bar4
-      this.width4 ='20%' //this.getPositionPercentage(gannt.EndPlannedDay - gannt.EndActualDay);
-      this.position4 ='70%'// this.getPositionPercentage(Math.abs(gannt.EndActualDay));
-
-      EndProgress = gannt.EndPlannedDay;
-      console.log('Bar3 position3', this.position3)
-      console.log('Bar3 width3', this.width3)
+      this.StartProgress = gannt.StartActualDay;
     }
 
     //Calculated Bar2 progress 
-    this.position2 = this.getPositionPercentage(StartProgress);
-    this.width2 = this.getPositionPercentage(EndProgress - StartProgress);
+    this.position2 = this.getPositionPercentage(this.StartProgress);
+    this.width2 = gannt.Progress.toString() + '%';
+
+
+    //Calculated Bar3
+    this.position3 = this.getPositionPercentage(this.StartProgress + parseInt(gannt.Progress.toString()));
+    this.width3 = '5%'
+
+    //Case Forcast
+    if (gannt.ForcastDay > 0) {
+      this.position4 = this.getPositionPercentage(gannt.EndPlannedDay);
+      this.width4 = this.getPositionPercentage(gannt.ForcastDay - gannt.EndPlannedDay);
+
+      console.log('forcast case ')
+      console.log('ForcastDay ', gannt.ForcastDay)
+      console.log('EndPlannedDay ', gannt.EndPlannedDay)
+
+    }
+
+
+    console.log('position2', this.position2)
+    console.log('width2 ', this.width2)
+    console.log('width3 ', this.width3)
+    console.log('  this.StartProgress ',   this.StartProgress)
+    console.log('gannt.Progress ', gannt.Progress)
+
+
 
 
   }
@@ -96,5 +97,6 @@ export class GanttChartComponent implements OnInit {
   getPositionPercentage(position: number): string {
     return ((position * 100) / 365).toString() + '%';
   }
+
 
 }

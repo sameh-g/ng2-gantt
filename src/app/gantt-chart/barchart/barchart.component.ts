@@ -20,16 +20,13 @@ export class BarchartComponent implements OnInit {
 
  @Input('color') set color(color) {
     this._color = color;
-    console.log(color)
   }
   
  @Input('position') set from(position) {
     this._position = position;
-    console.log(position)
   }
  @Input('width') set width(width) {
     this._width = width;
-    console.log("mina..",width)
   }
 
 }
