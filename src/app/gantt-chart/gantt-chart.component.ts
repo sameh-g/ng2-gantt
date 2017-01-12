@@ -9,8 +9,7 @@ import { Gantt } from "./ganttModel"
 
 })
 export class GanttChartComponent implements OnInit {
-
-
+  
 private  _gantt:Gantt;
   constructor() {
   }

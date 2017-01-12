@@ -1,1 +1,1 @@
-# Gantt Cli
+# Gantt Chart
