@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Gantt } from "./ganttModel"
+import { Gantt } from "./gantt-chart/ganttModel"
 
 @Component({
     selector: 'app-root',
@@ -15,7 +15,6 @@ export class AppComponent {
     gantt3: Gantt;
 
     constructor() {
-        console.log('kkkkkconstrcu')
         this.gantt1 = new Gantt("01/01/2016", "10/12/2016", "03/15/2016", "12/23/2016", 8);
         this.gantt2 = new Gantt("02/01/2016", "10/12/2016", "03/15/2016", "12/23/2016", 8);
         this.gantt3 = new Gantt("03/01/2016", "10/12/2016", "03/15/2016", "12/23/2016", 8);

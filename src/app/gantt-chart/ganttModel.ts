@@ -12,6 +12,7 @@ export class Gantt {
     Date4Day: number;
 
     constructor(date1: string, date2: string, date3: string, date4: string, status: number) {
+      
         this.Date1 = new Date(date1);
         this.Date1Day = this.getDayOfTheYear(this.Date1);
 
