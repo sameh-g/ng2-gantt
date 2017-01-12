@@ -1,32 +1,32 @@
 export class Gantt {
-    Date1: Date = new Date();
-    Date2: Date = new Date();
-    Date3: Date = new Date();
-    Date4: Date = new Date();
+    StartPlanned: Date = new Date();
+    EndPlanned: Date = new Date();
+    StartActual: Date = new Date();
+    EndActual: Date = new Date();
 
-    status: number;
+    forcast: number;
 
-    Date1Day: number;
-    Date2Day: number;
-    Date3Day: number;
-    Date4Day: number;
+    StartPlannedDay: number;
+    EndPlannedDay: number;
+    StartActualDay: number;
+    EndActualDay: number;
 
-    constructor(date1: string, date2: string, date3: string, date4: string, status: number) {
+    constructor(StartPlanned: string, EndPlanned: string, StartActual: string, EndActual: string, forcast: number) {
       
-        this.Date1 = new Date(date1);
-        this.Date1Day = this.getDayOfTheYear(this.Date1);
+        this.StartPlanned = new Date(StartPlanned);
+        this.StartPlannedDay = this.getDayOfTheYear(this.StartPlanned);
 
-        this.Date2 = new Date(date2);
-        this.Date2Day = this.getDayOfTheYear(this.Date2);
+        this.EndPlanned = new Date(EndPlanned);
+        this.EndPlannedDay = this.getDayOfTheYear(this.EndPlanned);
 
-        this.Date3 = new Date(date3);
-        this.Date3Day = this.getDayOfTheYear(this.Date3);
+        this.StartActual = new Date(StartActual);
+        this.StartActualDay = this.getDayOfTheYear(this.StartActual);
 
-        this.Date4 = new Date(date4);
-        this.Date4Day = this.getDayOfTheYear(this.Date4);
+        this.EndActual = new Date(EndActual);
+        this.EndActualDay = this.getDayOfTheYear(this.EndActual);
 
 
-        this.status = status;
+        this.forcast = forcast;
 
     }
 
