@@ -64,38 +64,44 @@ export class GanttChartComponent implements OnInit {
 
     //Calculated Bar2 progress 
     this.position2 = this.getPositionPercentage(this.StartProgress);
-    this.width2 = gannt.Progress.toString() + '%';
+    this.width2 = this.getPositionPercentage(this.calculateProgressWidth(gannt.Progress,
+      this.StartProgress, gannt.ForcastDay))
 
 
     //Calculated Bar3
-    this.position3 = this.getPositionPercentage(this.StartProgress + parseInt(gannt.Progress.toString()));
-    this.width3 = '5%'
+    this.position3 = this.getPositionPercentage(this.StartProgress + this.calculateProgressWidth(gannt.Progress,
+      this.StartProgress, gannt.ForcastDay));
+    this.width3 = this.getPositionPercentage(gannt.EndActualDay-(this.calculateProgressWidth(gannt.Progress,
+    this.StartProgress, gannt.ForcastDay)+this.StartProgress))
 
     //Case Forcast
-    if (gannt.ForcastDay > 0) {
-      this.position4 = this.getPositionPercentage(gannt.EndPlannedDay);
-      this.width4 = this.getPositionPercentage(gannt.ForcastDay - gannt.EndPlannedDay);
 
-      console.log('forcast case ')
-      console.log('ForcastDay ', gannt.ForcastDay)
-      console.log('EndPlannedDay ', gannt.EndPlannedDay)
-
-    }
+    this.position4 = this.getPositionPercentage(gannt.EndActualDay);
+    this.width4 = this.getPositionPercentage(gannt.ForcastDay - gannt.EndActualDay);
 
 
+
+    console.log('forcast case ')
+    console.log('ForcastDay ', gannt.ForcastDay)
+    console.log('EndPlannedDay ', gannt.EndPlannedDay)
     console.log('position2', this.position2)
     console.log('width2 ', this.width2)
     console.log('width3 ', this.width3)
-    console.log('this.StartProgress',   this.StartProgress)
+    console.log('this.StartProgress', this.StartProgress)
     console.log('gannt.Progress ', gannt.Progress)
-
-
-
-
   }
 
   getPositionPercentage(position: number): string {
     return ((position * 100) / 365).toString() + '%';
+  }
+
+  calculateProgressWidth(progress: number, start: number, end: number): any {
+    console.log('progress,start,end', progress, start, end)
+    var capacity = end - start;
+    var progress = ((progress * capacity) / 100) //+ start
+    console.log('prgress', progress);
+    return progress;
+
   }
 
 
