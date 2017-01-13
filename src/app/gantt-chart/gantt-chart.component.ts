@@ -92,6 +92,7 @@ export class GanttChartComponent implements OnInit {
   }
   
 calculateGanttStatus(gannt:Gantt):any{
+
   if(gannt.Status==1)
   {
     this.color1="#d9ecc3";
@@ -104,8 +105,9 @@ calculateGanttStatus(gannt:Gantt):any{
     this.color1="#FACECF";
     this.color2="#D54147";
     this.color3="#9E4B4C";
-    if(gannt.ForcastDay!=0)
-        this.color4="#ababab";
+
+    // if(gannt.ForcastDay!=NaN)
+    //     this.color4="#ababab";
   }
     else
   {
