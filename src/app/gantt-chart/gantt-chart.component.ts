@@ -17,7 +17,7 @@ export class GanttChartComponent implements OnInit {
   @Input('gantt') set gantt(gantt) {
     this._gantt = gantt;
     this.calculateGantt(this._gantt)
-  
+
     console.log(gantt)
   }
 
@@ -72,15 +72,15 @@ export class GanttChartComponent implements OnInit {
     //Calculated Bar3
     this.position3 = this.getPositionPercentage(this.StartProgress + this.calculateProgressWidth(gannt.Progress,
       this.StartProgress, gannt.ForcastDay));
-    this.width3 = this.getPositionPercentage(gannt.EndActualDay-(this.calculateProgressWidth(gannt.Progress,
-    this.StartProgress, gannt.ForcastDay)+this.StartProgress))
+    this.width3 = this.getPositionPercentage(gannt.EndActualDay - (this.calculateProgressWidth(gannt.Progress,
+      this.StartProgress, gannt.ForcastDay) + this.StartProgress))
 
     //Case Forcast
     this.position4 = this.getPositionPercentage(gannt.EndActualDay);
     this.width4 = this.getPositionPercentage(gannt.ForcastDay - gannt.EndActualDay);
 
 
-   this.calculateGanttStatus(gannt);
+    this.calculateGanttStatus(gannt);
     console.log('forcast case ')
     console.log('ForcastDay ', gannt.ForcastDay)
     console.log('EndPlannedDay ', gannt.EndPlannedDay)
@@ -90,35 +90,32 @@ export class GanttChartComponent implements OnInit {
     console.log('this.StartProgress', this.StartProgress)
     console.log('gannt.Progress ', gannt.Progress)
   }
-  
-calculateGanttStatus(gannt:Gantt):any{
 
-  if(gannt.Status==1)
-  {
-    this.color1="#d9ecc3";
-    this.color2="#7fbe35";
-    this.color3="#cfcfcf";
-    this.color4="#ababab";
+  calculateGanttStatus(gannt: Gantt): any {
+
+    if (gannt.Status == 1) {
+      this.color1 = "#d9ecc3";
+      this.color2 = "#7fbe35";
+      this.color3 = "#cfcfcf";
+      this.color4 = "#ababab";
+    }
+    else if (gannt.Status == 2) {
+      this.color1 = "#FACECF";
+      this.color2 = "#D54147";
+      this.color3 = "#9E4B4C";
+
+      // if(gannt.ForcastDay!=NaN)
+      //     this.color4="#ababab";
+    }
+    else {
+      this.color1 = "#E5A046";
+      this.color2 = "#E5A046";
+      this.color3 = "#FAD9AC";
+      // this.color4="#ababab";
+    }
+
+
   }
-  else if(gannt.Status==2)
-  {
-    this.color1="#FACECF";
-    this.color2="#D54147";
-    this.color3="#9E4B4C";
-
-    // if(gannt.ForcastDay!=NaN)
-    //     this.color4="#ababab";
-  }
-    else
-  {
-    this.color1="#E5A046";
-    this.color2="#E5A046";
-    this.color3="#FAD9AC";
-   // this.color4="#ababab";
-  }
-
-
-}
   getPositionPercentage(position: number): string {
     return ((position * 100) / 365).toString() + '%';
   }

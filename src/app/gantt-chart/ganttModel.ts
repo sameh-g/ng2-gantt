@@ -26,12 +26,13 @@ export class Gantt {
 
         this.EndActual = new Date(EndActual);
         this.EndActualDay = this.getDayOfTheYear(this.EndActual);
+        
 
         this.ForcastDate = new Date(ForcastDate);
         this.ForcastDay = this.getDayOfTheYear(this.ForcastDate);
 
         this.Progress = Progress;
-this.Status=Status;
+        this.Status=Status;
         // console.log("Forcast", this.ForcastDate);
         // console.log("ForcastDay", this.ForcastDay);
         // console.log("StartPlannedDay", this.StartPlannedDay);
