@@ -11,9 +11,9 @@ export class Gantt {
     EndActualDay: number;
     ForcastDay: number;
     Progress: number;
-
+    Status:number;
     constructor( StartPlanned: string, EndPlanned: string, StartActual: string, EndActual: string,
-       ForcastDate: string, Progress: number) {
+       ForcastDate: string, Progress: number,Status:number) {
 
         this.StartPlanned = new Date(StartPlanned);
         this.StartPlannedDay = this.getDayOfTheYear(this.StartPlanned);
@@ -31,7 +31,7 @@ export class Gantt {
         this.ForcastDay = this.getDayOfTheYear(this.ForcastDate);
 
         this.Progress = Progress;
-
+this.Status=Status;
         // console.log("Forcast", this.ForcastDate);
         // console.log("ForcastDay", this.ForcastDay);
         // console.log("StartPlannedDay", this.StartPlannedDay);
