@@ -15,7 +15,7 @@ export class GanttChartComponent implements OnInit {
   @Input('gantt') set gantt(gantt) {
     this._gantt = gantt;
     this.calculateGantt(this._gantt)
-
+    this.calculateGanttChart(this._gantt);
     console.log(gantt)
   }
 
@@ -68,31 +68,6 @@ export class GanttChartComponent implements OnInit {
 
   //This method should return an object with {color and Width for each 4 bar charts per one..} calculated 
   calculateGantt(gannt: Gantt): any {
-    // In case there is no Actual start date, the bar will take the color starting the start date.
-
-    if (gannt.ActualStartDateDay == 0) {
-      this.StartActualBarStartPosition = this.getValuePercentageInYear(gannt.StartDateDay);
-      //Color of Start Vs Actula should be removed.. 
-      console.log("*************StartActualBarStartPosition********", this.StartActualBarStartPosition);
-    }
-
-
-    //In Case Actual Start Date is after the Start Date..
-    else if (gannt.StartDateDay < gannt.ActualStartDateDay) {
-      var startEndDateDiff = gannt.ActualStartDateDay - gannt.StartDateDay;
-      //Change Status value the color between the dates is a shade lighter than the remaining of the bar
-      this.StartActualBarStartPosition = this.getValuePercentageInYear(gannt.ActualStartDateDay);
-      this.StartVsActualBarCapacity = this.getValuePercentageInYear(startEndDateDiff);
-      console.log("****Actuale after start *******StartActualBarStartPosition********", this.StartActualBarStartPosition);
-    }
-
-    //In case the start date is after the Actual start date
-    else if (gannt.StartDateDay > gannt.ActualStartDateDay) {
-      var startEndDateDiff = gannt.StartDateDay - gannt.StartDateDay;
-      //Change Status Value for Color Differnece will  be the dates is a shade darker than the remaining of the bar
-      this.StartActualBarStartPosition = this.getValuePercentageInYear(startEndDateDiff);
-      console.log("****Start after Actual *******StartActualBarStartPosition********", this.StartActualBarStartPosition);
-    }
 
     if (gannt.StartDateDay > gannt.ActualStartDateDay) {
       this.width1 = this.getPositionPercentage(gannt.StartDateDay - gannt.ActualStartDateDay);
@@ -131,6 +106,39 @@ export class GanttChartComponent implements OnInit {
     // console.log('width3 ', this.width3)
     // console.log('this.StartProgress', this.StartProgress)
     // console.log('gannt.Progress ', gannt.Progress)
+  }
+  calculateGanttChart(gannt: Gantt): any {
+
+    var StartProgressBar: number = 0;
+    var EndProgressBar: number = 0;
+
+    // In case there is no Actual start date, the bar will take the color starting the start date.
+    if (gannt.ActualStartDateDay == 0) {
+      this.StartActualBarStartPosition = this.getValuePercentageInYear(gannt.StartDateDay);
+      //Color of Start Vs Actula should be removed.. 
+      console.log("*************StartActualBarStartPosition********", this.StartActualBarStartPosition);
+    }
+
+
+    //In Case Actual Start Date is after the Start Date..
+    else if (gannt.StartDateDay < gannt.ActualStartDateDay) {
+      var startEndDateDiff = gannt.ActualStartDateDay - gannt.StartDateDay;
+      //Change Status value the color between the dates is a shade lighter than the remaining of the bar
+      this.StartActualBarStartPosition = this.getValuePercentageInYear(gannt.ActualStartDateDay);
+      this.StartVsActualBarCapacity = this.getValuePercentageInYear(startEndDateDiff);
+      console.log("****Actuale after start *******StartActualBarStartPosition********", this.StartActualBarStartPosition);
+    }
+
+    //In case the start date is after the Actual start date
+    else if (gannt.StartDateDay > gannt.ActualStartDateDay) {
+      var startEndDateDiff = gannt.StartDateDay - gannt.StartDateDay;
+      //Change Status Value for Color Differnece will  be the dates is a shade darker than the remaining of the bar
+      this.StartActualBarStartPosition = this.getValuePercentageInYear(startEndDateDiff);
+      console.log("****Start after Actual *******StartActualBarStartPosition********", this.StartActualBarStartPosition);
+    }
+
+
+
   }
 
   calculateGanttStatus(gannt: Gantt): any {
