@@ -253,6 +253,8 @@ export class GanttChartComponent implements OnInit {
 
       this.ProgressBarColor = (gannt.Status==1)? "#7fbe35":(gannt.Status==2)?"#e5a046":"#D54147";
       this.EndDateBarColor = (gannt.Status==1)? "#cfcfcf":(gannt.Status==2)?"#f9ecda":"#ff4c4c";
+
+      //Needs to be handled for daarker and lighter color before and after end date case 
       this.ForcastedEndDateBarColor =(gannt.Status==1)? "#ababab":(gannt.Status==2)?"#f4d9b5":"#7f0000";
     
   }
