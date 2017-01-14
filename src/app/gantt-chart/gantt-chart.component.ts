@@ -242,22 +242,19 @@ export class GanttChartComponent implements OnInit {
       }
 
       else if (gannt.StartDateDay >= gannt.ActualStartDateDay) {
-        this.StartActualDifferenceBarColor =(gannt.Status==1)? "#006400":(gannt.Status==2)?"#E5A046":"#D54147";
+        this.StartActualDifferenceBarColor =(gannt.Status==1)? "#006400":(gannt.Status==2)?"#b78038":"#7f0000";
         console.log('darker StartActualDifferenceBarColor', this.StartActualDifferenceBarColor)
 
       }
       else if (gannt.StartDateDay <= gannt.ActualStartDateDay) {
-        this.StartActualDifferenceBarColor = (gannt.Status==1)? "#d9ecc3":(gannt.Status==2)?"#FF7F50":"#FA8072";
+        this.StartActualDifferenceBarColor = (gannt.Status==1)? "#d9ecc3":(gannt.Status==2)?"#f4d9b5":"#FA8072";
         console.log('lighter StartActualDifferenceBarColor', this.StartActualDifferenceBarColor)
       }
 
-      this.ProgressBarColor = (gannt.Status==1)? "#7fbe35":(gannt.Status==2)?"#FF4500":"#D54147";
-      this.EndDateBarColor = (gannt.Status==1)? "#cfcfcf":(gannt.Status==2)?"#FF6347":"#D54147";
-      this.ForcastedEndDateBarColor =(gannt.Status==1)? "#ababab":(gannt.Status==2)?"#f4d9b5":"#D54147";
+      this.ProgressBarColor = (gannt.Status==1)? "#7fbe35":(gannt.Status==2)?"#e5a046":"#D54147";
+      this.EndDateBarColor = (gannt.Status==1)? "#cfcfcf":(gannt.Status==2)?"#f9ecda":"#ff4c4c";
+      this.ForcastedEndDateBarColor =(gannt.Status==1)? "#ababab":(gannt.Status==2)?"#f4d9b5":"#7f0000";
     
-    
-
-
   }
   getPositionPercentage(position: number): string {
     return ((position * 100) / 365).toString() + '%';
