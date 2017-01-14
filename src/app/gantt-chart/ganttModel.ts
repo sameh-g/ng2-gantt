@@ -1,47 +1,50 @@
 export class Gantt {
-    StartPlanned: Date = new Date();
-    EndPlanned: Date = new Date();
-    StartActual: Date = new Date();
-    EndActual: Date = new Date();
-    ForcastDate: Date = new Date();
+    StartDate: Date = new Date();
+    EndDate: Date = new Date();
+    ActualStartDate: Date = new Date();
+    ActualEndDate: Date = new Date();
+    ForcastedDate: Date = new Date();
 
-    StartPlannedDay: number=0;
-    EndPlannedDay: number=0;
-    StartActualDay: number=0;
-    EndActualDay: number=0;
-    ForcastDay: number=0;
+    StartDateDay: number = 0;
+    EndDateDay: number = 0;
+    ActualStartDateDay: number = 0;
+    ActualEndDateDay: number = 0;
+    ForcastDay: number = 0;
     Progress: number;
-    Status:number;
-    constructor( StartPlanned: string, EndPlanned: string, StartActual: string, EndActual: string,
-       ForcastDate: string, Progress: number,Status:number) {
+    Status: number;
+    constructor(StartDate: string, EndDate: string, ActualStartDate: string, ActualEndDate: string,
+        ForcastedDate: string, Progress: number, Status: number) {
 
-        this.StartPlanned = new Date(StartPlanned);
-        this.StartPlannedDay = this.getDayOfTheYear(this.StartPlanned);
-
-        this.EndPlanned = new Date(EndPlanned);
-        this.EndPlannedDay = this.getDayOfTheYear(this.EndPlanned);
-
-        this.StartActual = new Date(StartActual);
-        this.StartActualDay = this.getDayOfTheYear(this.StartActual);
-
-        this.EndActual = new Date(EndActual);
-        this.EndActualDay = this.getDayOfTheYear(this.EndActual);
-        
-if(ForcastDate!="")
-{
-        this.ForcastDate = new Date(ForcastDate);
-        this.ForcastDay = this.getDayOfTheYear(this.ForcastDate);
-
-}
+        if (StartDate != "") {
+            this.StartDate = new Date(StartDate);
+            this.StartDateDay = this.getDayOfTheYear(this.StartDate);
+        }
+        if (EndDate != "") {
+            this.EndDate = new Date(EndDate);
+            this.EndDateDay = this.getDayOfTheYear(this.EndDate);
+        }
+        if (ActualStartDate != "") {
+            this.ActualStartDate = new Date(ActualStartDate);
+            this.ActualStartDateDay = this.getDayOfTheYear(this.ActualStartDate);
+        }
+        if (ActualEndDate != "") {
+            this.ActualEndDate = new Date(ActualEndDate);
+            this.ActualEndDateDay = this.getDayOfTheYear(this.ActualEndDate);
+        }
+        if (ForcastedDate != "") {
+            this.ForcastedDate = new Date(ForcastedDate);
+            this.ForcastDay = this.getDayOfTheYear(this.ForcastedDate);
+        }
 
         this.Progress = Progress;
-        this.Status=Status;
-         console.log("Forcast", this.ForcastDate);
+        this.Status = Status;
+
+        //console.log("Forcast", this.ForcastedDate);
         // console.log("ForcastDay", this.ForcastDay);
-        // console.log("StartPlannedDay", this.StartPlannedDay);
-        // console.log("EndPlannedDay", this.EndPlannedDay);
-        // console.log("StartActualDay", this.StartActualDay);
-        // console.log("EndActualDay", this.EndActualDay);
+        // console.log("StartDateDay", this.StartDateDay);
+        // console.log("EndDateDay", this.EndDateDay);
+        // console.log("ActualStartDateDay", this.ActualStartDateDay);
+        // console.log("ActualEndDateDay", this.ActualEndDateDay);
 
     }
 

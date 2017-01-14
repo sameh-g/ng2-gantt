@@ -13,7 +13,7 @@ animations: [
     state('in', style({transform: 'translateX(0)'})),
     transition('void => *', [
       style({transform: 'translateX(-100%)'}),
-      animate(700)
+      animate(1000)
     ]),
     transition('* => void', [
       animate(100, style({transform: 'translateX(100%)'}))
