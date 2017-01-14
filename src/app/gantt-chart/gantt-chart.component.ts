@@ -143,7 +143,14 @@ export class GanttChartComponent implements OnInit {
 
   calculateGanttStatus(gannt: Gantt): any {
     if (gannt.Status == 1) {
-      this.color1 = "#d9ecc3";
+    //  if(gannt.ActualStartDateDay==0)
+    //     this.color1 = "";
+    //   else if (gannt.StartDateDay > gannt.ActualStartDateDay)
+    //     this.color1 = "#006400";
+    //   else if (gannt.StartDateDay < gannt.ActualStartDateDay)
+        this.color1 = "#d9ecc3";
+ 
+
       this.color2 = "#7fbe35";
       this.color3 = "#cfcfcf";
       this.color4 = "#ababab";
@@ -165,10 +172,37 @@ export class GanttChartComponent implements OnInit {
 
 
   }
-  // calculateStatusColor(status:string):any
-  // {
+  calculateGanttStatusColor(gannt: Gantt): any {
+    if (gannt.Status == 1) {
+    //  if(gannt.ActualStartDateDay==0)
+    //     this.color1 = "";
+    //   else if (gannt.StartDateDay > gannt.ActualStartDateDay)
+    //     this.color1 = "#006400";
+    //   else if (gannt.StartDateDay < gannt.ActualStartDateDay)
+        this.color1 = "#d9ecc3";
+ 
 
-  // }
+      this.color2 = "#7fbe35";
+      this.color3 = "#cfcfcf";
+      this.color4 = "#ababab";
+    }
+    else if (gannt.Status == 2) {
+      this.color1 = "#FACECF";
+      this.color2 = "#D54147";
+      this.color3 = "#9E4B4C";
+
+      // if(gannt.ForcastDay!=NaN)
+      //     this.color4="#ababab";
+    }
+    else {
+      this.color1 = "#E5A046";
+      this.color2 = "#E5A046";
+      this.color3 = "#FAD9AC";
+      // this.color4="#ababab";
+    }
+
+
+  }
   getPositionPercentage(position: number): string {
     return ((position * 100) / 365).toString() + '%';
   }
@@ -178,10 +212,10 @@ export class GanttChartComponent implements OnInit {
   }
 
   calculateProgressWidth(progress: number, start: number, end: number): any {
-    console.log('progress,start,end', progress, start, end)
+    // console.log('progress,start,end', progress, start, end)
     var capacity = end - start;
     var progress = ((progress * capacity) / 100) //+ start
-    console.log('prgress', progress);
+    //  console.log('prgress', progress);
     return progress;
 
   }
