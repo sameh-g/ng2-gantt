@@ -14,46 +14,31 @@ export class GanttChartComponent implements OnInit {
 
   @Input('gantt') set gantt(gantt) {
     this._gantt = gantt;
-    this.calculateGantt(this._gantt)
     console.log(gantt)
     this.calculateGanttChart(this._gantt);
 
   }
 
-  //Bar1
-  color1: string = "";
-  position1: string = '';
-  width1: string = '';
+
 
   //Start Dates Bar (Bar1)
   StartActualDifferenceBarColor: string = "";
   StartActualBarCapacity: string = "";
   StartActualBarStartPosition: string = "";
 
-  //Bar2 Progress
-  color2: string = "";
-  position2: string = '';
-  width2: string = '';
 
   //Progress Bar (Bar2)
   ProgressBarColor: string = "";
   ProgressBarCapacity: string = "";
   ProgressBarStartPosition: string = "";
 
-  //Bar3
-  color3: string = "";
-  position3: string = '';
-  width3: string = '';
+
 
   //Remaining Bar (Bar3)
   EndDateBarColor: string = "";
   EndDateBarCapacity: string = "";
   EndDateStartPosition: string = "";
 
-  //Forcasted Bar (Bar4)
-  color4: string = "";
-  position4: string = '';
-  width4: string = '';
 
   ForcastedEndDateBarColor: string = "";
   ForcastedBarEndDateBarCapacity: string = "";
@@ -67,47 +52,8 @@ export class GanttChartComponent implements OnInit {
   }
 
 
-  //This method should return an object with {color and Width for each 4 bar charts per one..} calculated 
-  calculateGantt(gannt: Gantt): any {
-
-    if (gannt.StartDateDay > gannt.ActualStartDateDay) {
-      this.width1 = this.getPositionPercentage(gannt.StartDateDay - gannt.ActualStartDateDay);
-      this.position1 = this.getPositionPercentage(gannt.ActualStartDateDay);
-      this.StartProgress = gannt.StartDateDay;
-    }
-    else {
-      this.width1 = this.getPositionPercentage(gannt.ActualStartDateDay - gannt.StartDateDay);
-      this.position1 = this.getPositionPercentage(gannt.StartDateDay);
-      this.StartProgress = gannt.ActualStartDateDay;
-    }
-
-    //Calculated Bar2 progress 
-    this.position2 = this.getPositionPercentage(this.StartProgress);
-    this.width2 = this.getPositionPercentage(this.calculateProgressWidth(gannt.Progress,
-      this.StartProgress, gannt.ForcastDay))
 
 
-    //Calculated Bar3
-    this.position3 = this.getPositionPercentage(this.StartProgress + this.calculateProgressWidth(gannt.Progress,
-      this.StartProgress, gannt.ForcastDay));
-    this.width3 = this.getPositionPercentage(gannt.ActualEndDateDay - (this.calculateProgressWidth(gannt.Progress,
-      this.StartProgress, gannt.ForcastDay) + this.StartProgress))
-
-    //Case Forcast
-    this.position4 = this.getPositionPercentage(gannt.ActualEndDateDay);
-    this.width4 = this.getPositionPercentage(gannt.ForcastDay - gannt.ActualEndDateDay);
-
-
-    this.calculateGanttStatus(gannt);
-    // console.log('forcast case ')
-    // console.log('ForcastDay ', gannt.ForcastDay)
-    // console.log('EndDateDay ', gannt.EndDateDay)
-    // console.log('position2', this.position2)
-    // console.log('width2 ', this.width2)
-    // console.log('width3 ', this.width3)
-    // console.log('this.StartProgress', this.StartProgress)
-    // console.log('gannt.Progress ', gannt.Progress)
-  }
   calculateGanttChart(gannt: Gantt): any {
 
     var StartProgressBar: number = 0;
@@ -150,27 +96,8 @@ export class GanttChartComponent implements OnInit {
     }
 
 
-    //Remember that actual end date should be applied while we have progress 100%
-
-    //If there is an Actual End date in the selected time period, the color will take the whole bar till the Actual End date
-
-
-    //If there is a Forecasted date in the selected time period and actual start date, 
-    //the color will take 40% of the bar from Actual Start date to the Forecasted date
-    // If there is a  Forecasted date in the selected time period and No actual start date ,
-    //the color will take 40% of the bar from Start date to the Forecasted date
-    //Already start progress bar adjusted.. 
-
-    //If there is No  Forecasted date in the selected time period and actual start date , 
-    //the color will take 40% of the bar from Actual Start date to End date
-    //If there is No Forecasted date in the selected time period and No actual start date , 
-    //the colour will take 40% of the bar from Start date to the End date
-
-
-
     //Case Forcast Actuale And END Dates 
     if (gannt.ForcastDay > 0 && gannt.Progress != 100) {
-      console.log("************************************")
       //Calculate Progress 
       var progressCapacity = this.calculateProgressWidth(gannt.Progress, StartProgressBar, gannt.ForcastDay)
       EndProgressBar = StartProgressBar + progressCapacity;
@@ -252,31 +179,6 @@ export class GanttChartComponent implements OnInit {
 
   }
 
-  calculateGanttStatus(gannt: Gantt): any {
-    if (gannt.Status == 1) {
-      this.color1 = "#d9ecc3";
-      this.color2 = "#7fbe35";
-      this.color3 = "#cfcfcf";
-      this.color4 = "#ababab";
-    }
-    else if (gannt.Status == 2) {
-      this.color1 = "#FACECF";
-      this.color2 = "#D54147";
-      this.color3 = "#9E4B4C";
-
-      // if(gannt.ForcastDay!=NaN)
-      //     this.color4="#ababab";
-    }
-    else {
-      this.color1 = "#E5A046";
-      this.color2 = "#E5A046";
-      this.color3 = "#FAD9AC";
-      // this.color4="#ababab";
-    }
-
-
-  }
-
   calculateGanttStatusColor(gannt: Gantt): any {
 
     if (gannt.ActualStartDateDay == 0) {
@@ -334,9 +236,6 @@ export class GanttChartComponent implements OnInit {
     }
     this.ForcastedEndDateBarColor = (gannt.Status == 1) ? "#ababab" : (gannt.Status == 2) ? "#f4d9b5" : "#7f0000";
 
-  }
-  getPositionPercentage(position: number): string {
-    return ((position * 100) / 365).toString() + '%';
   }
 
   getValuePercentageInYear(value: number): string {
