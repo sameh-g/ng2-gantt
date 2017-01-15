@@ -13,7 +13,12 @@ export class AppComponent {
     gantt1: Gantt;
     gantt2: Gantt;
     gantt3: Gantt;
-
+    gantt4: Gantt;
+    gantt5: Gantt;
+    gantt6: Gantt;
+    gantt7: Gantt;
+    gantt8: Gantt;
+    gantt9: Gantt;
     constructor() {
         // StartDate
         // EndDate
@@ -22,9 +27,19 @@ export class AppComponent {
         // ForcastedDate
         //Progress
         //Status
-        this.gantt1 = new Gantt("01/01/2016", "11/05/2016", "03/01/2016", "", "11/15/2016", 50,1);
-        this.gantt2 = new Gantt("01/20/2016", "10/12/2016", "01/01/2016", "", "11/25/2016", 20,2);
-        this.gantt3 = new Gantt("02/15/2016", "11/30/2016", "03/01/2016", "12/16/2016", "", 80,3);
+        this.gantt1 = new Gantt("01/01/2016", "11/05/2016", "01/20/2016", "", "11/15/2016", 100, 1);
+        this.gantt2 = new Gantt("01/01/2016", "11/05/2016", "01/01/2016", "11/05/2016", "", 100, 1);
+        this.gantt3 = new Gantt("01/01/2016", "12/05/2016", "01/01/2016", "", "", 50, 1);
+
+        this.gantt4 = new Gantt("01/01/2016", "10/30/2016", "01/30/2016", "", "12/30/2016", 90, 1);
+        this.gantt5 = new Gantt("01/25/2016", "11/05/2016", "01/01/2016", "", "", 50, 1);
+
+        this.gantt6 = new Gantt("01/20/2016", "12/05/2016", "01/30/2016", "", "", 50, 1);
+
+        this.gantt7 = new Gantt("03/20/2016", "12/05/2016", "", "", "", 10, 1);
+        this.gantt8 = new Gantt("01/01/2016", "12/05/2016", "01/20/2016", "12/15/2016", "", 100, 1);
+        this.gantt9 = new Gantt("01/30/2016", "12/15/2016", "01/01/2016", "11/15/2016", "", 100, 1);
+
     }
 
 }
