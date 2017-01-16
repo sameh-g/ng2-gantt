@@ -9,11 +9,14 @@ import { Gantt } from "./ganttModel"
 export class GanttChartComponent implements OnInit {
 
   private _gantt: Gantt;
+
+
   constructor() {
   }
 
   @Input('gantt') set gantt(gantt) {
     this._gantt = gantt;
+
     console.log(gantt)
     this.calculateGanttChart(this._gantt);
 
@@ -21,6 +24,7 @@ export class GanttChartComponent implements OnInit {
 
 
 
+  Direction: boolean=true;
   //Start Dates Bar (Bar1)
   StartActualDifferenceBarColor: string = "";
   StartActualBarCapacity: string = "";
@@ -55,6 +59,7 @@ export class GanttChartComponent implements OnInit {
 
 
   calculateGanttChart(gannt: Gantt): any {
+    this.Direction = gannt.Direction;
 
     if (gannt.ActualStartDateDay == 0) {
       this.ProgressBarStartPosition = this.getValuePercentageInYear(gannt.StartDateDay);
@@ -64,7 +69,7 @@ export class GanttChartComponent implements OnInit {
     else if (gannt.StartDateDay <= gannt.ActualStartDateDay) {
       var startActualDateDiff = gannt.ActualStartDateDay - gannt.StartDateDay;
       this.StartProgress = gannt.ActualStartDateDay;
-      
+
       this.ProgressBarStartPosition = this.getValuePercentageInYear(gannt.ActualStartDateDay);
       this.StartActualBarStartPosition = this.getValuePercentageInYear(gannt.StartDateDay);
       this.StartActualBarCapacity = this.getValuePercentageInYear(startActualDateDiff);
@@ -185,7 +190,7 @@ export class GanttChartComponent implements OnInit {
     this.ProgressBarColor = (gannt.Status == 1) ? "#7fbe35" : (gannt.Status == 2) ? "#f99a30" : "#ff3f40";
 
     if (gannt.EndDateDay <= gannt.ActualEndDateDay) {
-      this.EndDateBarColor = (gannt.Status == 1) ? "#588325" : (gannt.Status == 2) ? "#ac6313" : "#b93938"; 
+      this.EndDateBarColor = (gannt.Status == 1) ? "#588325" : (gannt.Status == 2) ? "#ac6313" : "#b93938";
       console.log('darker EndDateBarColor', this.EndDateBarColor)
 
     }
