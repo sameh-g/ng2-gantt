@@ -14,7 +14,10 @@ export class Gantt {
     Status: number;
     constructor(StartDate: string, EndDate: string, ActualStartDate: string, ActualEndDate: string,
         ForcastedDate: string, Progress: number, Status: number) {
-
+        if (Progress == 0) {
+            ForcastedDate = "";
+            ActualStartDate = ""
+        }
         if (StartDate != "") {
             this.StartDate = new Date(StartDate);
             this.StartDateDay = this.getDayOfTheYear(this.StartDate);
