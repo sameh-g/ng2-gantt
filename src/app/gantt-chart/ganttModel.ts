@@ -13,9 +13,9 @@ export class Gantt {
     Progress: number;
     Status: number;
     Direction:boolean=true;
-    
+
     constructor(StartDate: string, EndDate: string, ActualStartDate: string, ActualEndDate: string,
-        ForcastedDate: string, Progress: number, Status: number,direction:boolean) {
+        ForcastedDate: string, Progress: number, Status: number,Direction:boolean) {
         if (Progress == 0) {
             ForcastedDate = "";
             ActualStartDate = ""
@@ -44,7 +44,7 @@ export class Gantt {
         this.Progress = Progress;
         this.Status = Status;
 
-        this.Direction=direction;
+        this.Direction=Direction;
 
         //console.log("Forcast", this.ForcastedDate);
         // console.log("ForcastDay", this.ForcastDay);
