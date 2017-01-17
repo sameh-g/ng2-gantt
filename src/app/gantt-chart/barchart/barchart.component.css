@@ -3,3 +3,10 @@
     .leftRound{border-radius: 4px 0px 0px 4px;}
     .rightRound{ border-radius: 0 4px 4px 0; }
 
+.bartoolTip{position: absolute;top: -16px;width: 16px;     border: 0;
+    background: transparent;
+    padding: 0;
+    height: 16px;
+    border-radius: 0;
+    outline: 0!important;}
+.bartoolTip i{    top: -5px; position: relative;}

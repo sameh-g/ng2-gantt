@@ -6,6 +6,7 @@ import {ChartModule} from 'angular2-highcharts'
 import { AppComponent } from './app.component';
 import { GanttChartComponent } from './gantt-chart/gantt-chart.component';
 import { BarchartComponent } from './gantt-chart/barchart/barchart.component';
+import {TooltipModule} from "ng2-tooltip";
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { BarchartComponent } from './gantt-chart/barchart/barchart.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    ChartModule
+    ChartModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
