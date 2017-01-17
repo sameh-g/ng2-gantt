@@ -38,7 +38,7 @@ export class BarchartComponent implements OnInit {
       return {
         'background-color': this._color,
         'width': this._width,
-        'right': this._position
+        'right': this._position,
       }
 
     }
@@ -51,6 +51,10 @@ export class BarchartComponent implements OnInit {
 
     }
 
+
+  }
+
+  setArrow():any{
 
   }
 
