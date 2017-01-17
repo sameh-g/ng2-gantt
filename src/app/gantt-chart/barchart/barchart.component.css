@@ -1,3 +1,5 @@
 .ganttBar{        position: absolute;
     height: 100%;}
+    .leftRound{border-radius: 4px 0px 0px 4px;}
+    .rightRound{ border-radius: 0 4px 4px 0; }
 
