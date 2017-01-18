@@ -40,12 +40,12 @@ export class AppComponent {
         // ForcastedDate
         //Progress
         //Status
-        this.gantt1 = new Gantt("11/01/2015", "11/30/2016", "11/20/2015", "11/15/2016", "", 100, 3, false, year);
+        this.gantt1 = new Gantt("01/01/2016", "11/30/2016", "01/20/2016", "11/15/2016", "", 100, 3, false, year);
 
         this.gantt2 = new Gantt("01/01/2016", "11/05/2016", "01/01/2016", "11/05/2016", "", 100, 3, false, year);
         this.gantt3 = new Gantt("01/01/2016", "11/05/2016", "03/01/2016", "", "", 50, 3, false, year);
 
-        this.gantt4 = new Gantt("01/01/2016", "10/30/2016", "01/30/2016", "", "12/30/2016", 50, 3, false, year);
+        this.gantt4 = new Gantt("01/01/2016", "10/30/2016", "01/30/2016", "", "12/20/2016", 50, 3, false, year);
 
         this.gantt5 = new Gantt("01/25/2016", "11/05/2016", "01/01/2016", "", "", 50, 3, false, year);
 

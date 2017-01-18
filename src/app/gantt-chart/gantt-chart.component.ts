@@ -93,7 +93,7 @@ export class GanttChartComponent implements OnInit {
     }
 
 
-    if (gannt.ForcastDay > 0 && gannt.Progress != 100) {
+    if (gannt.ForcastDay != 0 && gannt.Progress != 100) {
 
       var progressCapacity = this.calculateProgressWidth(gannt.Progress, this.StartProgress, gannt.ForcastDay)
       this.EndProgress = this.StartProgress + progressCapacity;
@@ -189,12 +189,11 @@ export class GanttChartComponent implements OnInit {
 
     this.ProgressBarColor = (gannt.Status == 1) ? "#7fbe35" : (gannt.Status == 2) ? "#f99a30" : "#ff3f40";
 
-    if (gannt.EndDateDay <= gannt.ActualEndDateDay) {
+    if (gannt.EndDateDay < gannt.ActualEndDateDay) {
       this.EndDateBarColor = (gannt.Status == 1) ? "#588325" : (gannt.Status == 2) ? "#ac6313" : "#b93938";
       console.log('darker EndDateBarColor', this.EndDateBarColor)
 
     }
-
     else if (gannt.ForcastDay == 0 && gannt.ActualEndDateDay == 0) {
       //Grey
       this.EndDateBarColor = (gannt.Status == 1) ? "#cfcfcf" : (gannt.Status == 2) ? "#cfcfcf" : "#cfcfcf";
@@ -205,7 +204,7 @@ export class GanttChartComponent implements OnInit {
       console.log('ligter EndDateBarColor', this.EndDateBarColor)
     }
 
-    else if (gannt.ForcastDay > 0) {
+    else if (gannt.ForcastDay != 0) {
 
 
       this.ForcastedEndDateBarColor = (gannt.Status == 1) ? "#ababab" : (gannt.Status == 2) ? "#f4d9b5" : "#7f0000";
