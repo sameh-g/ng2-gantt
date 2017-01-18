@@ -12,10 +12,12 @@ export class Gantt {
     ForcastDay: number = 0;
     Progress: number;
     Status: number;
-    Direction:boolean=true;
-
+    Direction: boolean = true;
+    CurrentYear: number;
     constructor(StartDate: string, EndDate: string, ActualStartDate: string, ActualEndDate: string,
-        ForcastedDate: string, Progress: number, Status: number,Direction:boolean) {
+        ForcastedDate: string, Progress: number, Status: number, Direction: boolean, currentYear: number) {
+        this.CurrentYear = currentYear;
+
         if (Progress == 0) {
             ForcastedDate = "";
             ActualStartDate = ""
@@ -44,7 +46,7 @@ export class Gantt {
         this.Progress = Progress;
         this.Status = Status;
 
-        this.Direction=Direction;
+        this.Direction = Direction;
 
         //console.log("Forcast", this.ForcastedDate);
         // console.log("ForcastDay", this.ForcastDay);
@@ -55,8 +57,22 @@ export class Gantt {
 
     }
 
+
     getDayOfTheYear(date: Date): any {
-        return (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000;
+
+        return this.getDayOfTheYearInCurrent(date, this.CurrentYear);
+        // return (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000;
+    }
+
+    getDayOfTheYearInCurrent(date: Date, CurrentYear: number): any {
+
+        var datediffernece = CurrentYear - date.getFullYear();
+        var dateexpand = datediffernece * 365;
+        var days = (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000;
+        var daysDiff = days - dateexpand;
+        return daysDiff;
+        // console.log('daysDiff', daysDiff)
+
     }
 
 }

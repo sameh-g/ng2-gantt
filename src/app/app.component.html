@@ -12,10 +12,7 @@
             </div>
 
 
-<span tooltip="content to be shown in the tooltip"
-      [tooltipDisabled]="false"
-      [tooltipAnimation]="true"
-      tooltipPlacement="top">
+            <span tooltip="content to be shown in the tooltip" [tooltipDisabled]="false" [tooltipAnimation]="true" tooltipPlacement="top">
     element on which this tooltip is applied.
 </span>
 
@@ -29,9 +26,13 @@
                                     <th class="goldColor uppercase" width="23.25%" rowspan="2">Name </th>
                                     <th class="goldColor uppercase" width="13.08%" rowspan="2"> Owner </th>
                                     <th class="goldColor" width="58.43%" colspan="12">
-                                        <span class="left mrgr10"><i class="fa fa-caret-left" aria-hidden="true"></i></span>
-                                        2016
-                                        <span class="right mrgl10"><i class="fa fa-caret-right" aria-hidden="true"></i></span>
+                                        <a (click)="previousYear()">
+                                            <span class="left mrgr10"><i class="fa fa-caret-left" aria-hidden="true"></i></span>
+                                        </a>
+                                        {{year}}
+                                        <a (click)="nextYear()">
+                                            <span class="right mrgl10"><i class="fa fa-caret-right" aria-hidden="true"></i></span>
+                                        </a>
                                     </th>
                                     <th class="goldColor" width="5.35%" rowspan="2">Update Status</th>
                                 </tr>
@@ -51,7 +52,7 @@
                                     <th class="goldColor" width="8.3%"> Oct</th>
                                     <th class="goldColor" width="8.3%"> Nov</th>
                                     <th class="goldColor" width="8.3%"> Dec</th>
-                                
+
 
 
                                 </tr>
@@ -59,440 +60,440 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="expandAction pointer"> 
-                                        <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span> 
+                                    <td class="expandAction pointer">
+                                        <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span>
                                         <span class="opened mrgr10">
       
                                         </span>
                                         <div style="text-align: left">
-                                            <li>
-                                                StartDate: 01/01/2016
-                                            </li>
-                                            <li>
-                                                EndDate: 11/30/2016
-                                            </li>
-                                            <li>
-                                                ActualStartDate: 01/20/2016
-                                            </li>
-                                            <li>
-                                                ActualEndDate:11/15/2016
-                                            </li>
-                                            <li>
-                                                ForcastedDate: 
-                                            </li>
+<li>
+    StartDate: 01/01/2016
+</li>
+<li>
+    EndDate: 11/30/2016
+</li>
+<li>
+    ActualStartDate: 01/20/2016
+</li>
+<li>
+    ActualEndDate:11/15/2016
+</li>
+<li>
+    ForcastedDate:
+</li>
 
-                                            <li>
-                                                Progress: 100%
-                                            </li>
-                                            <li>
-                                                Status: Green
-                                            </li>
-                                        </div>
-                                        <td>Gantt 1</td>
-                                        <td colspan="12" class="padL0 padR0">
+<li>
+    Progress: 100%
+</li>
+<li>
+    Status: Green
+</li>
+</div>
+<td>Gantt 1</td>
+<td colspan="12" class="padL0 padR0">
 
-                                            <app-gantt-chart [gantt]='gantt1'></app-gantt-chart>
+    <app-gantt-chart [gantt]='gantt1'></app-gantt-chart>
 
-                                        </td>
-                                        <td><img src="img/icons/update-status.png" /></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4" class="pad0 whiteBackground">
-                                        <div class="expandCont">aaaaa</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="expandAction pointer"> <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span>                                        <span class="opened mrgr10"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-                                        <div style="text-align: left">                             
-                                            <li>
-                                                StartDate: 01/01/2016
-                                            </li>
-                                            <li>
-                                                EndDate: 11/05/2016
-                                            </li>
-                                            <li>
-                                                ActualStartDate: 01/01/2016
-                                            </li>
-                                            <li>
-                                                ActualEndDate: 11/05/2016
-                                            </li>
-                                            <li>
-                                                ForcastedDate: 
-                                            </li>
-
-                                            <li>
-                                                Progress: 100%
-                                            </li>
-                                            <li>
-                                                Status: Green
-                                            </li>
-                                        </div>
 </td>
-                                    <td>Gantt 2</td>
-                                    <td colspan="12">
-                                        <app-gantt-chart [gantt]='gantt2'></app-gantt-chart>
-                                    </td>
-                                    <td><img src="img/icons/update-status.png" /></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4" class="pad0  whiteBackground">
-                                        <div class="expandCont">aaaaa</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="expandAction pointer"> <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span>                                        <span class="opened mrgr10"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-                                     
-                                     <div style="text-align: left">                             
-                                            <li>
-                                                StartDate: 01/01/2016
-                                            </li>
-                                            <li>
-                                                EndDate: 12/05/2016
-                                            </li>
-                                            <li>
-                                                ActualStartDate: 01/01/2016
-                                            </li>
-                                            <li>
-                                                ActualEndDate: 
-                                            </li>
-                                            <li>
-                                                ForcastedDate: 
-                                            </li>
+<td><img src="img/icons/update-status.png" /></td>
+</tr>
+<tr>
+    <td colspan="4" class="pad0 whiteBackground">
+        <div class="expandCont">aaaaa</div>
+    </td>
+</tr>
+<tr>
+    <td class="expandAction pointer"> <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span> <span class="opened mrgr10"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+        <div style="text-align: left">
+<li>
+    StartDate: 01/01/2016
+</li>
+<li>
+    EndDate: 11/05/2016
+</li>
+<li>
+    ActualStartDate: 01/01/2016
+</li>
+<li>
+    ActualEndDate: 11/05/2016
+</li>
+<li>
+    ForcastedDate:
+</li>
 
-                                            <li>
-                                                Progress: 50%
-                                            </li>
-                                            <li>
-                                                Status: Green
-                                            </li>
-                                        </div>
-                                        </td>
-                                    <td>Gantt 3</td>
-                                    <td colspan="12">
-                                        <app-gantt-chart [gantt]='gantt3'></app-gantt-chart>
-                                    </td>
-                                    <td><img src="img/icons/update-status.png" /></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4" class="pad0  whiteBackground">
-                                        <div class="expandCont">eee</div>
-                                    </td>
-                                </tr>
+<li>
+    Progress: 100%
+</li>
+<li>
+    Status: Green
+</li>
+</div>
+</td>
+<td>Gantt 2</td>
+<td colspan="12">
+    <app-gantt-chart [gantt]='gantt2'></app-gantt-chart>
+</td>
+<td><img src="img/icons/update-status.png" /></td>
+</tr>
+<tr>
+    <td colspan="4" class="pad0  whiteBackground">
+        <div class="expandCont">aaaaa</div>
+    </td>
+</tr>
+<tr>
+    <td class="expandAction pointer"> <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span> <span class="opened mrgr10"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
 
-                                <tr>
-                                    <td class="expandAction pointer"> <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span>                                        <span class="opened mrgr10"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-                                           
-                                             <div style="text-align: left">                             
-                                            <li>
-                                                StartDate: 01/01/2016
-                                            </li>
-                                            <li>
-                                                EndDate: 10/30/2016
-                                            </li>
-                                            <li>
-                                                ActualStartDate: 01/30/2016
-                                            </li>
-                                            <li>
-                                                ActualEndDate: 
-                                            </li>
-                                            <li>
-                                                ForcastedDate: 12/30/2016
-                                            </li>
+        <div style="text-align: left">
+<li>
+    StartDate: 01/01/2016
+</li>
+<li>
+    EndDate: 12/05/2016
+</li>
+<li>
+    ActualStartDate: 01/01/2016
+</li>
+<li>
+    ActualEndDate:
+</li>
+<li>
+    ForcastedDate:
+</li>
 
-                                            <li>
-                                                Progress: 50%
-                                            </li>
-                                            <li>
-                                                Status: Green
-                                            </li>
-                                        </div>
-                                        <td>Gantt 4</td>
-                                        <td colspan="12" style="direction: rtl">
-                                            <app-gantt-chart [gantt]='gantt4'></app-gantt-chart>
-                                        </td>
-                                        <td><img src="img/icons/update-status.png" /></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4" class="pad0  whiteBackground">
-                                        <div class="expandCont">eee</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="expandAction pointer"> <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span>                                        <span class="opened mrgr10"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+<li>
+    Progress: 50%
+</li>
+<li>
+    Status: Green
+</li>
+</div>
+</td>
+<td>Gantt 3</td>
+<td colspan="12">
+    <app-gantt-chart [gantt]='gantt3'></app-gantt-chart>
+</td>
+<td><img src="img/icons/update-status.png" /></td>
+</tr>
+<tr>
+    <td colspan="4" class="pad0  whiteBackground">
+        <div class="expandCont">eee</div>
+    </td>
+</tr>
 
-     <div style="text-align: left">                             
-                                            <li>
-                                                StartDate: 01/25/2016
-                                            </li>
-                                            <li>
-                                                EndDate: 11/05/2016
-                                            </li>
-                                            <li>
-                                                ActualStartDate:01/01/2016
-                                            </li>
-                                            <li>
-                                                ActualEndDate: 
-                                            </li>
-                                            <li>
-                                                ForcastedDate: 
-                                            </li>
+<tr>
+    <td class="expandAction pointer"> <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span> <span class="opened mrgr10"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
 
-                                            <li>
-                                                Progress: 50%
-                                            </li>
-                                            <li>
-                                                Status: Green
-                                            </li>
-                                        </div>
-                                        </td>
-                                    <td>Gantt 5</td>
-                                    <td colspan="12">
-                                        <app-gantt-chart [gantt]='gantt5'></app-gantt-chart>
-                                    </td>
-                                    <td><img src="img/icons/update-status.png" /></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4" class="pad0  whiteBackground">
-                                        <div class="expandCont">eee</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="expandAction pointer"> <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span>                                        <span class="opened mrgr10"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
- <div style="text-align: left">                             
-                                            <li>
-                                                StartDate: 01/20/2016
-                                            </li>
-                                            <li>
-                                                EndDate: 12/05/2016
-                                            </li>
-                                            <li>
-                                                ActualStartDate:01/30/2016
-                                            </li>
-                                            <li>
-                                                ActualEndDate: 
-                                            </li>
-                                            <li>
-                                                ForcastedDate: 
-                                            </li>
+        <div style="text-align: left">
+<li>
+    StartDate: 01/01/2016
+</li>
+<li>
+    EndDate: 10/30/2016
+</li>
+<li>
+    ActualStartDate: 01/30/2016
+</li>
+<li>
+    ActualEndDate:
+</li>
+<li>
+    ForcastedDate: 12/30/2016
+</li>
 
-                                            <li>
-                                                Progress: 50%
-                                            </li>
-                                            <li>
-                                                Status: Green
-                                            </li>
-                                        </div>
-                                        </td>
-                                    <td>Gantt 6
-                                        
-                                    </td>
-                                    <td colspan="12">
-                                        <app-gantt-chart [gantt]='gantt6'></app-gantt-chart>
-                                    </td>
-                                    <td><img src="img/icons/update-status.png" /></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4" class="pad0  whiteBackground">
-                                        <div class="expandCont">eee</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="expandAction pointer"> <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span>                                        <span class="opened mrgr10"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-                              
-                                   <div style="text-align: left">                             
-                                            <li>
-                                                StartDate: 03/20/2016
-                                            </li>
-                                            <li>
-                                                EndDate: 12/30/2016
-                                            </li>
-                                            <li>
-                                                ActualStartDate:
-                                            </li>
-                                            <li>
-                                                ActualEndDate: 
-                                            </li>
-                                            <li>
-                                                ForcastedDate: 
-                                            </li>
+<li>
+    Progress: 50%
+</li>
+<li>
+    Status: Green
+</li>
+</div>
+<td>Gantt 4</td>
+<td colspan="12" style="direction: rtl">
+<app-gantt-chart [gantt]='gantt4'></app-gantt-chart>
+</td>
+<td><img src="img/icons/update-status.png" /></td>
+</tr>
+<tr>
+    <td colspan="4" class="pad0  whiteBackground">
+        <div class="expandCont">eee</div>
+    </td>
+</tr>
+<tr>
+    <td class="expandAction pointer"> <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span> <span class="opened mrgr10"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
 
-                                            <li>
-                                                Progress: 10%
-                                            </li>
-                                            <li>
-                                                Status: Green
-                                            </li>
-                                        </div>
-                                      </td>
-                                    <td>Gantt 7</td>
-                                    <td colspan="12">
-                                        <app-gantt-chart [gantt]='gantt7'></app-gantt-chart>
-                                    </td>
-                                    <td><img src="img/icons/update-status.png" /></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4" class="pad0  whiteBackground">
-                                        <div class="expandCont">eee</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="expandAction pointer"> <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span>                                        <span class="opened mrgr10"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+        <div style="text-align: left">
+<li>
+    StartDate: 01/25/2016
+</li>
+<li>
+    EndDate: 11/05/2016
+</li>
+<li>
+    ActualStartDate:01/01/2016
+</li>
+<li>
+    ActualEndDate:
+</li>
+<li>
+    ForcastedDate:
+</li>
 
-                                        
- <div style="text-align: left">                             
-                                            <li>
-                                                StartDate: 01/01/2016
-                                            </li>
-                                            <li>
-                                                EndDate: 12/05/2016
-                                            </li>
-                                            <li>
-                                                ActualStartDate:01/20/2016
-                                            </li>
-                                            <li>
-                                                ActualEndDate: 12/15/2016
-                                            </li>
-                                            <li>
-                                                ForcastedDate: 
-                                            </li>
+<li>
+    Progress: 50%
+</li>
+<li>
+    Status: Green
+</li>
+</div>
+</td>
+<td>Gantt 5</td>
+<td colspan="12">
+    <app-gantt-chart [gantt]='gantt5'></app-gantt-chart>
+</td>
+<td><img src="img/icons/update-status.png" /></td>
+</tr>
+<tr>
+    <td colspan="4" class="pad0  whiteBackground">
+        <div class="expandCont">eee</div>
+    </td>
+</tr>
+<tr>
+    <td class="expandAction pointer"> <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span> <span class="opened mrgr10"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+        <div style="text-align: left">
+<li>
+    StartDate: 01/20/2016
+</li>
+<li>
+    EndDate: 12/05/2016
+</li>
+<li>
+    ActualStartDate:01/30/2016
+</li>
+<li>
+    ActualEndDate:
+</li>
+<li>
+    ForcastedDate:
+</li>
 
-                                            <li>
-                                                Progress: 100%
-                                            </li>
-                                            <li>
-                                                Status: Green
-                                            </li>
-                                        </div>
-                                        </td>
-                                    <td>Gantt 8</td>
-                                    <td colspan="12">
-                                        <app-gantt-chart [gantt]='gantt8'></app-gantt-chart>
-                                    </td>
-                                    <td><img src="img/icons/update-status.png" /></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4" class="pad0  whiteBackground">
-                                        <div class="expandCont">eee</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="expandAction pointer"> <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span>                                        <span class="opened mrgr10"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
- 
- <div style="text-align: left">                             
-                                            <li>
-                                                StartDate: 01/30/2016
-                                            </li>
-                                            <li>
-                                                EndDate: 12/15/2016
-                                            </li>
-                                            <li>
-                                                ActualStartDate:01/01/2016
-                                            </li>
-                                            <li>
-                                                ActualEndDate: 11/15/2016
-                                            </li>
-                                            <li>
-                                                ForcastedDate: 
-                                            </li>
+<li>
+    Progress: 50%
+</li>
+<li>
+    Status: Green
+</li>
+</div>
+</td>
+<td>Gantt 6
 
-                                            <li>
-                                                Progress: 100%
-                                            </li>
-                                            <li>
-                                                Status: Green
-                                            </li>
-                                        </div>
-                                        </td>
-                                    <td>Gantt 9</td>
-                                    <td colspan="12">
-                                        <app-gantt-chart [gantt]='gantt9'></app-gantt-chart>
-                                    </td>
-                                    <td><img src="img/icons/update-status.png" /></td>
-                                </tr>
-                                   <tr>
-                                    <td class="expandAction pointer"> <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span>                                        <span class="opened mrgr10"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-  
+</td>
+<td colspan="12">
+    <app-gantt-chart [gantt]='gantt6'></app-gantt-chart>
+</td>
+<td><img src="img/icons/update-status.png" /></td>
+</tr>
+<tr>
+    <td colspan="4" class="pad0  whiteBackground">
+        <div class="expandCont">eee</div>
+    </td>
+</tr>
+<tr>
+    <td class="expandAction pointer"> <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span> <span class="opened mrgr10"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
 
- <div style="text-align: left">                             
-                                            <li>
-                                                StartDate: 01/30/2016
-                                            </li>
-                                            <li>
-                                                EndDate: 10/15/2016
-                                            </li>
-                                            <li>
-                                                ActualStartDate:01/01/2016
-                                            </li>
-                                            <li>
-                                                ActualEndDate: 
-                                            </li>
-                                            <li>
-                                                ForcastedDate: 12/01/2016
-                                            </li>
+        <div style="text-align: left">
+<li>
+    StartDate: 03/20/2016
+</li>
+<li>
+    EndDate: 12/30/2016
+</li>
+<li>
+    ActualStartDate:
+</li>
+<li>
+    ActualEndDate:
+</li>
+<li>
+    ForcastedDate:
+</li>
 
-                                            <li>
-                                                Progress: 50%
-                                            </li>
-                                            <li>
-                                                Status: Green
-                                            </li>
-                                        </div>
-                                        </td>
-                                    <td>Gantt 10</td>
-                                    <td colspan="12">
-                                        <app-gantt-chart [gantt]='gantt10'></app-gantt-chart>
-                                    </td>
-                                    <td><img src="img/icons/update-status.png" /></td>
-                                </tr>
-                                  <tr>
-                                    <td class="expandAction pointer"> <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span>                                        <span class="opened mrgr10"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-  
-
- <div style="text-align: left">                             
-                                            <li>
-                                                StartDate: 01/01/2016
-                                            </li>
-                                            <li>
-                                                EndDate: 12/30/2016
-                                            </li>
-                                            <li>
-                                                ActualStartDate:01/01/2016
-                                            </li>
-                                            <li>
-                                                ActualEndDate: 
-                                            </li>
-                                            <li>
-                                                ForcastedDate: 10/01/2016
-                                            </li>
-
-                                            <li>
-                                                Progress: 50%
-                                            </li>
-                                            <li>
-                                                Status: Green
-                                            </li>
-                                        </div>
-                                        </td>
-                                    <td>Gantt 11</td>
-                                    <td colspan="12">
-                                        <app-gantt-chart [gantt]='gantt11'></app-gantt-chart>
-                                    </td>
-                                    <td><img src="img/icons/update-status.png" /></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4" class="pad0  whiteBackground">
-                                        <div class="expandCont">eee</div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+<li>
+    Progress: 10%
+</li>
+<li>
+    Status: Green
+</li>
+</div>
+</td>
+<td>Gantt 7</td>
+<td colspan="12">
+    <app-gantt-chart [gantt]='gantt7'></app-gantt-chart>
+</td>
+<td><img src="img/icons/update-status.png" /></td>
+</tr>
+<tr>
+    <td colspan="4" class="pad0  whiteBackground">
+        <div class="expandCont">eee</div>
+    </td>
+</tr>
+<tr>
+    <td class="expandAction pointer"> <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span> <span class="opened mrgr10"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
 
 
-                    </div>
-                </div>
+        <div style="text-align: left">
+<li>
+    StartDate: 01/01/2016
+</li>
+<li>
+    EndDate: 12/05/2016
+</li>
+<li>
+    ActualStartDate:01/20/2016
+</li>
+<li>
+    ActualEndDate: 12/15/2016
+</li>
+<li>
+    ForcastedDate:
+</li>
 
-            </div>
-        </div>
-    </div>
+<li>
+    Progress: 100%
+</li>
+<li>
+    Status: Green
+</li>
+</div>
+</td>
+<td>Gantt 8</td>
+<td colspan="12">
+    <app-gantt-chart [gantt]='gantt8'></app-gantt-chart>
+</td>
+<td><img src="img/icons/update-status.png" /></td>
+</tr>
+<tr>
+    <td colspan="4" class="pad0  whiteBackground">
+        <div class="expandCont">eee</div>
+    </td>
+</tr>
+<tr>
+    <td class="expandAction pointer"> <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span> <span class="opened mrgr10"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+
+        <div style="text-align: left">
+<li>
+    StartDate: 01/30/2016
+</li>
+<li>
+    EndDate: 12/15/2016
+</li>
+<li>
+    ActualStartDate:01/01/2016
+</li>
+<li>
+    ActualEndDate: 11/15/2016
+</li>
+<li>
+    ForcastedDate:
+</li>
+
+<li>
+    Progress: 100%
+</li>
+<li>
+    Status: Green
+</li>
+</div>
+</td>
+<td>Gantt 9</td>
+<td colspan="12">
+    <app-gantt-chart [gantt]='gantt9'></app-gantt-chart>
+</td>
+<td><img src="img/icons/update-status.png" /></td>
+</tr>
+<tr>
+    <td class="expandAction pointer"> <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span> <span class="opened mrgr10"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+
+
+        <div style="text-align: left">
+<li>
+    StartDate: 01/30/2016
+</li>
+<li>
+    EndDate: 10/15/2016
+</li>
+<li>
+    ActualStartDate:01/01/2016
+</li>
+<li>
+    ActualEndDate:
+</li>
+<li>
+    ForcastedDate: 12/01/2016
+</li>
+
+<li>
+    Progress: 50%
+</li>
+<li>
+    Status: Green
+</li>
+</div>
+</td>
+<td>Gantt 10</td>
+<td colspan="12">
+    <app-gantt-chart [gantt]='gantt10'></app-gantt-chart>
+</td>
+<td><img src="img/icons/update-status.png" /></td>
+</tr>
+<tr>
+    <td class="expandAction pointer"> <span class="closed mrgr10"><i class="fa fa-caret-right" aria-hidden="true"></i></span> <span class="opened mrgr10"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+
+
+        <div style="text-align: left">
+<li>
+    StartDate: 01/01/2016
+</li>
+<li>
+    EndDate: 12/30/2016
+</li>
+<li>
+    ActualStartDate:01/01/2016
+</li>
+<li>
+    ActualEndDate:
+</li>
+<li>
+    ForcastedDate: 10/01/2016
+</li>
+
+<li>
+    Progress: 50%
+</li>
+<li>
+    Status: Green
+</li>
+</div>
+</td>
+<td>Gantt 11</td>
+<td colspan="12">
+    <app-gantt-chart [gantt]='gantt11'></app-gantt-chart>
+</td>
+<td><img src="img/icons/update-status.png" /></td>
+</tr>
+<tr>
+    <td colspan="4" class="pad0  whiteBackground">
+        <div class="expandCont">eee</div>
+    </td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
 
 </div>
