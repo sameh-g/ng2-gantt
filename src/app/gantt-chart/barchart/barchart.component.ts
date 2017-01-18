@@ -33,7 +33,6 @@ export class BarchartComponent implements OnInit {
   }
 
   setStyle(): any {
-    console.log('direction', this._direction)
     if (this._direction) {
       return {
         'background-color': this._color,
