@@ -59,6 +59,7 @@ export class GanttChartComponent implements OnInit {
     this.setGanttBars(gantt);
     this.setGanttRound(gantt);
     this.setGanttArrows(gantt);
+    console.log(gantt)
   }
 
   calculateGanttChart(gannt: Gantt): any {
@@ -277,7 +278,7 @@ export class GanttChartComponent implements OnInit {
   setGanttArrows(gannt: Gantt): any {
     this.GanttBarStart.arrowDirection = "left";
     this.GanttBarForcasted.arrowDirection = "right";
-
+   
 
   }
 

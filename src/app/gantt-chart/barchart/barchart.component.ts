@@ -59,7 +59,7 @@ export class BarchartComponent implements OnInit {
 
   setRightArrow(): any {
 
-    if (this._bar.arrowDirection == "right"||this._bar.arrowDirection == "both")
+    if ((this._bar.arrowDirection == "right"||this._bar.arrowDirection == "both")&& this._bar.width!=0)
       return {
         'position': 'absolute',
         'visibility': 'visible',
@@ -79,9 +79,9 @@ export class BarchartComponent implements OnInit {
    
 
   }
+ 
   setLeftArrow():any{
-    
-    if (this._bar.arrowDirection == "left"||this._bar.arrowDirection == "both")
+    if ((this._bar.arrowDirection == "left"||this._bar.arrowDirection == "both")&& this._bar.width!=0)
       return {
         'position': 'absolute',
         'visibility': 'visible',
@@ -103,7 +103,7 @@ export class BarchartComponent implements OnInit {
   setRound(): any {
     var rightRound='0 4px 4px 0';
     var leftRound='4px 0px 0px 4px';
-    
+
     if (this._bar.roundDirecton == "right")
       return  '0 4px 4px 0'
     else if (this._bar.roundDirecton == "left")
