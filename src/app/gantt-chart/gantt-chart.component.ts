@@ -9,17 +9,12 @@ import { GanttBar } from "./barchart/ganttbar.model";
 })
 export class GanttChartComponent implements OnInit {
 
-  private _gantt: Gantt;
 
   constructor() {
   }
 
   @Input('gantt') set gantt(gantt) {
-    this._gantt = gantt;
-
-    console.log(gantt)
-    this.calculateGanttChart(this._gantt);
-
+    this.fireGantt(gantt);
   }
 
   CurrentYear: number = 2016;
@@ -58,6 +53,13 @@ export class GanttChartComponent implements OnInit {
 
 
 
+  fireGantt(gantt: Gantt): any {
+    this.calculateGanttChart(gantt);
+    this.calculateGanttStatusColor(gantt);
+    this.setGanttBars(gantt);
+    this.setGanttRound(gantt);
+    this.setGanttArrows(gantt);
+  }
 
   calculateGanttChart(gannt: Gantt): any {
     this.Direction = gannt.Direction;
@@ -238,10 +240,8 @@ export class GanttChartComponent implements OnInit {
     this.GanttBarStart.position = this.StartActualBarStartPosition;
     this.GanttBarStart.width = this.StartActualBarCapacity;
     this.GanttBarStart.color = this.StartActualDifferenceBarColor;
-    this.GanttBarStart.barType = "start";
     this.GanttBarStart.direction = this.Direction;
-    this.GanttBarStart.roundDirecton = "left";
-    this.GanttBarStart.arrowDirection="left";
+    this.GanttBarStart.barType = "start";
 
     this.GanttBarProgress.position = this.ProgressBarStartPosition;
     this.GanttBarProgress.width = this.ProgressBarCapacity;
@@ -260,10 +260,22 @@ export class GanttChartComponent implements OnInit {
     this.GanttBarForcasted.color = this.ForcastedEndDateBarColor;
     this.GanttBarForcasted.barType = "forcasted";
     this.GanttBarForcasted.direction = this.Direction;
-    this.GanttBarForcasted.arrowDirection = "right";
+
+
+  }
+
+  setGanttRound(gantt: Gantt): any {
+    this.GanttBarStart.roundDirecton = "left";
+
     this.GanttBarForcasted.roundDirecton = "right";
   }
 
+  setGanttArrows(gannt: Gantt): any {
+    this.GanttBarStart.arrowDirection = "left";
+    this.GanttBarForcasted.arrowDirection = "right";
+
+
+  }
 
 
   getValuePercentageInYear(value: number): number {
