@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Gantt } from "./gantt-chart/ganttModel"
+import { Gantt } from "./gantt-chart/gantt.model"
 
 @Component({
     selector: 'app-root',

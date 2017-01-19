@@ -8,6 +8,7 @@ import {
   transition,
   animate
 } from '@angular/core';
+import { GanttBar } from './ganttbar.model';
 
 @Component({
   animations: [
@@ -28,56 +29,91 @@ import {
 
 })
 export class BarchartComponent implements OnInit {
+  private _bar: GanttBar;
 
   constructor() {
+
   }
 
   setStyle(): any {
-    if (this._direction) {
+    if (this._bar.direction) {
       return {
-        'background-color': this._color,
-        'width': this._width,
-        'right': this._position,
+        'background-color': this._bar.color,
+        'width': this._bar.width.toString() + '%',
+        'right': this._bar.position.toString() + '%',
+        'border-radius': this.setRound()
       }
 
     }
     else {
       return {
-        'background-color': this._color,
-        'width': this._width,
-        'left': this._position
+        'background-color': this._bar.color,
+        'width': this._bar.width.toString() + '%',
+        'left': this._bar.position.toString() + '%',
+        'border-radius': this.setRound()
       }
-
     }
 
 
   }
 
-  setArrow():any{
+  setRightArrow(): any {
+
+    if (this._bar.arrowDirection == "right"||this._bar.arrowDirection == "both")
+      return {
+        'position': 'absolute',
+        'visibility': 'visible',
+        'top': "-18px",
+        'width': "16px",
+        'right': "-8px"
+      }
+    else {
+      return {
+        'position': 'absolute',
+        'visibility': 'hidden',
+        'top': "-18px",
+        'width': "16px",
+        'right': "-8px"
+      }
+    }
+   
 
   }
+  setLeftArrow():any{
+    
+    if (this._bar.arrowDirection == "left"||this._bar.arrowDirection == "both")
+      return {
+        'position': 'absolute',
+        'visibility': 'visible',
+        'top': "-18px",
+        'width': "16px",
+        'left': "-8px"
+      }
+    else {
+      return {
+        'position': 'absolute',
+        'visibility': 'hidden',
+        'top': "-18px",
+        'width': "16px",
+        'left': "-8px"
+      }
+    }
+  }
 
-  private _position: string = '';
-  private _width: string = '';
-  private _color: string = "";
-  private _direction: boolean = true;
+  setRound(): any {
+    var round;
+    if (this._bar.roundDirecton == "right")
+      return round = '0 4px 4px 0'
+    else if (this._bar.roundDirecton == "left")
+      return round = '4px 0px 0px 4px'
+  }
+
 
   ngOnInit() {
   }
 
-  left: string = "right"
-  @Input('color') set color(color) {
-    this._color = color;
-  }
 
-  @Input('position') set from(position) {
-    this._position = position;
+  @Input('ganttbar') set bar(bar) {
+    this._bar = bar;
   }
-  @Input('width') set width(width) {
-    this._width = width;
-  }
-  @Input('direction') set direction(direction) {
-    this._direction = direction;
-  }
-
 }

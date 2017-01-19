@@ -7,7 +7,6 @@ import {ChartModule} from 'angular2-highcharts'
 import { AppComponent } from './app.component';
 import { GanttChartComponent } from './gantt-chart/gantt-chart.component';
 import { BarchartComponent } from './gantt-chart/barchart/barchart.component';
-import {TooltipModule} from "ng2-tooltip";
 
 import {GanttModule} from './gantt-chart/gantt-chart.module';
 
@@ -23,7 +22,6 @@ import {GanttModule} from './gantt-chart/gantt-chart.module';
     FormsModule,
     HttpModule,
     ChartModule,
-    TooltipModule,
     GanttModule
 
   ],

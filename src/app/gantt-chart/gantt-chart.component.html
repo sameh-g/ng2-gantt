@@ -1,6 +1,14 @@
-<div class="ganttChartCont">
+<!--<div class="ganttChartCont">
 <app-barchart [direction]="Direction" [color]='StartActualDifferenceBarColor' [position]='StartActualBarStartPosition' [width]='StartActualBarCapacity'></app-barchart>
 <app-barchart [direction]="Direction" [color]='ProgressBarColor' [position]='ProgressBarStartPosition' [width]='ProgressBarCapacity'></app-barchart>
 <app-barchart [direction]="Direction" [color]='EndDateBarColor' [position]='EndDateStartPosition' [width]='EndDateBarCapacity'></app-barchart>
 <app-barchart [direction]="Direction" [color]='ForcastedEndDateBarColor' [position]='ForcastedBarEndDateBarStartPosition' [width]='ForcastedBarEndDateBarCapacity'></app-barchart>
+</div> -->
+
+
+<div class="ganttChartCont">
+<app-barchart [ganttbar]="GanttBarStart"></app-barchart>
+<app-barchart [ganttbar]="GanttBarProgress"></app-barchart>
+<app-barchart [ganttbar]="GanttBarEnd"></app-barchart>
+<app-barchart [ganttbar]="GanttBarForcasted"></app-barchart>
 </div> 
