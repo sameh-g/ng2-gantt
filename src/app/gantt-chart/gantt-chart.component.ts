@@ -267,7 +267,7 @@ export class GanttChartComponent implements OnInit {
 
   setGanttRound(gantt: Gantt): any {
     var left = "left"
-    var right = "left"
+    var right = "right"
     if (gantt.Direction) {
       left = "right"
       right = "left"
@@ -275,20 +275,23 @@ export class GanttChartComponent implements OnInit {
 
     this.GanttBarStart.roundDirecton = left;
     this.GanttBarForcasted.roundDirecton = right;
-   
-   if(this.StartActualBarCapacity==0&&this.EndDateBarCapacity==0&&this.ForcastedBarEndDateBarCapacity==0)
-   this.GanttBarProgress.roundDirecton="both";
+
+    if (this.StartActualBarCapacity == 0 && this.EndDateBarCapacity == 0 && this.ForcastedBarEndDateBarCapacity == 0)
+      this.GanttBarProgress.roundDirecton = "both";
 
     else if (this.StartActualBarCapacity == 0)
       this.GanttBarProgress.roundDirecton = left;
 
-
+    if (this.ForcastedBarEndDateBarCapacity == 0)
+      this.GanttBarEnd.roundDirecton = right;
+    else 
+      this.GanttBarForcasted.roundDirecton = right;
 
   }
 
   setGanttArrows(gannt: Gantt): any {
     var left = "left"
-    var right = "left"
+    var right = "right"
     if (gannt.Direction) {
       left = "right"
       right = "left"
