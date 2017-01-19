@@ -276,10 +276,15 @@ export class GanttChartComponent implements OnInit {
   }
 
   setGanttArrows(gannt: Gantt): any {
-    this.GanttBarStart.arrowDirection = "left";
-    this.GanttBarForcasted.arrowDirection = "right";
-   
 
+    this.GanttBarStart.arrowDirection = "left";
+    this.GanttBarProgress.arrowDirection = "left";
+  
+    if(gannt.Progress==100)
+    this.GanttBarProgress.arrowDirection="both";
+
+    this.GanttBarEnd.arrowDirection="right";
+    this.GanttBarForcasted.arrowDirection = "both";
   }
 
 
