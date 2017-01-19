@@ -266,25 +266,47 @@ export class GanttChartComponent implements OnInit {
   }
 
   setGanttRound(gantt: Gantt): any {
-    
-    if(this.StartActualBarCapacity==0)
-    this.GanttBarProgress.roundDirecton="left";
+    var left = "left"
+    var right = "left"
+    if (gantt.Direction) {
+      left = "right"
+      right = "left"
+    }
 
-    this.GanttBarStart.roundDirecton = "left";
-    this.GanttBarForcasted.roundDirecton = "right";
-    
+    this.GanttBarStart.roundDirecton = left;
+    this.GanttBarForcasted.roundDirecton = right;
+   
+   if(this.StartActualBarCapacity==0&&this.EndDateBarCapacity==0&&this.ForcastedBarEndDateBarCapacity==0)
+   this.GanttBarProgress.roundDirecton="both";
+
+    else if (this.StartActualBarCapacity == 0)
+      this.GanttBarProgress.roundDirecton = left;
+
+
+
   }
 
   setGanttArrows(gannt: Gantt): any {
+    var left = "left"
+    var right = "left"
+    if (gannt.Direction) {
+      left = "right"
+      right = "left"
+    }
 
-    this.GanttBarStart.arrowDirection = "left";
-    this.GanttBarProgress.arrowDirection = "left";
-  
-    if(gannt.Progress==100)
-    this.GanttBarProgress.arrowDirection="both";
-
-    this.GanttBarEnd.arrowDirection="right";
+    this.GanttBarStart.arrowDirection = left;
+    this.GanttBarProgress.arrowDirection = left;
+    this.GanttBarEnd.arrowDirection = right;
     this.GanttBarForcasted.arrowDirection = "both";
+
+    //Special cases 
+    if (gannt.Progress == 100) {
+      this.GanttBarProgress.arrowDirection = "both";
+      this.GanttBarEnd.arrowDirection = "both";
+    }
+
+
+
   }
 
 
