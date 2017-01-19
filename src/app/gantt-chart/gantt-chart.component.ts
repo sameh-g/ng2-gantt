@@ -265,9 +265,13 @@ export class GanttChartComponent implements OnInit {
   }
 
   setGanttRound(gantt: Gantt): any {
-    this.GanttBarStart.roundDirecton = "left";
+    
+    if(this.StartActualBarCapacity==0)
+    this.GanttBarProgress.roundDirecton="left";
 
+    this.GanttBarStart.roundDirecton = "left";
     this.GanttBarForcasted.roundDirecton = "right";
+    
   }
 
   setGanttArrows(gannt: Gantt): any {

@@ -101,11 +101,10 @@ export class BarchartComponent implements OnInit {
   }
 
   setRound(): any {
-    var round;
     if (this._bar.roundDirecton == "right")
-      return round = '0 4px 4px 0'
+      return  '0 4px 4px 0'
     else if (this._bar.roundDirecton == "left")
-      return round = '4px 0px 0px 4px'
+      return  '4px 0px 0px 4px'
   }
 
 
