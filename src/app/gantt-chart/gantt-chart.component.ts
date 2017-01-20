@@ -14,46 +14,25 @@ export class GanttChartComponent implements OnInit {
   }
 
   @Input('gantt') set gantt(gantt) {
-    this.fireGantt(gantt);
+    this.Gantt = gantt;
+    this.fireGantt(this.Gantt);
   }
 
   CurrentYear: number = 2016;
-
   Direction: boolean = true;
-  //Start Dates Bar (Bar1)
-  StartActualDifferenceBarColor: string = "";
-  StartActualBarCapacity: number = 0;
-  StartActualBarStartPosition: number = 0;
-  GanttBarStart: GanttBar = new GanttBar();
-
-  //Progress Bar (Bar2)
-  ProgressBarColor: string = "";
-  ProgressBarCapacity: number = 0;
-  ProgressBarStartPosition: number = 0;
-  GanttBarProgress: GanttBar = new GanttBar();
-
-
-  //Remaining Bar (Bar3)
-  EndDateBarColor: string = "";
-  EndDateBarCapacity: number = 0;
-  EndDateStartPosition: number = 0;
-  GanttBarEnd: GanttBar = new GanttBar();
-
-  //Forcasted Bar
-  ForcastedEndDateBarColor: string = "";
-  ForcastedBarEndDateBarCapacity: number = 0;
-  ForcastedBarEndDateBarStartPosition: number = 0;
-  GanttBarForcasted: GanttBar = new GanttBar();
 
   StartProgress: number = 0;
   EndProgress: number = 0;
 
+
+  Gantt: Gantt;
   ngOnInit() {
   }
 
 
 
   fireGantt(gantt: Gantt): any {
+
     this.calculateGanttChart(gantt);
     this.calculateGanttStatusColor(gantt);
     this.setGanttBars(gantt);
@@ -63,37 +42,36 @@ export class GanttChartComponent implements OnInit {
   }
 
   calculateGanttChart(gannt: Gantt): any {
-    this.Direction = gannt.Direction;
 
     if (gannt.ActualStartDateDay == 0) {
-      this.ProgressBarStartPosition = this.getValuePercentageInYear(gannt.StartDateDay);
+      gannt.GanttBarProgress.position = this.getValuePercentageInYear(gannt.StartDateDay);
       this.StartProgress = gannt.StartDateDay;
-      console.log("ProgressBarStartPosition", this.ProgressBarStartPosition);
+      console.log("ProgressBarStartPosition", gannt.GanttBarProgress.position);
     }
     else if (gannt.StartDateDay <= gannt.ActualStartDateDay) {
       var startActualDateDiff = gannt.ActualStartDateDay - gannt.StartDateDay;
       this.StartProgress = gannt.ActualStartDateDay;
 
-      this.ProgressBarStartPosition = this.getValuePercentageInYear(gannt.ActualStartDateDay);
-      this.StartActualBarStartPosition = this.getValuePercentageInYear(gannt.StartDateDay);
-      this.StartActualBarCapacity = this.getValuePercentageInYear(startActualDateDiff);
+      gannt.GanttBarProgress.position = this.getValuePercentageInYear(gannt.ActualStartDateDay);
+      gannt.GanttBarStart.position = this.getValuePercentageInYear(gannt.StartDateDay);
+      gannt.GanttBarStart.width = this.getValuePercentageInYear(startActualDateDiff);
 
-      console.log("actual after start StartActualBarStartPosition", this.StartActualBarStartPosition);
-      console.log("actual after start  StartActualBarCapacity", this.StartActualBarCapacity);
-      console.log("actual after start  ProgressBarStartPosition", this.ProgressBarStartPosition);
+      console.log("actual after start StartActualBarStartPosition", gannt.GanttBarStart.position);
+      console.log("actual after start  StartActualBarCapacity", gannt.GanttBarStart.width);
+      console.log("actual after start  ProgressBarStartPosition", gannt.GanttBarProgress.position);
     }
 
     else if (gannt.StartDateDay >= gannt.ActualStartDateDay) {
       var startEndDateDiff = gannt.StartDateDay - gannt.ActualStartDateDay;
       this.StartProgress = gannt.ActualStartDateDay;
 
-      this.ProgressBarStartPosition = this.getValuePercentageInYear(gannt.StartDateDay);
-      this.StartActualBarStartPosition = this.getValuePercentageInYear(gannt.ActualStartDateDay);
-      this.StartActualBarCapacity = this.getValuePercentageInYear(startEndDateDiff);
+      gannt.GanttBarProgress.position = this.getValuePercentageInYear(gannt.StartDateDay);
+      gannt.GanttBarStart.position = this.getValuePercentageInYear(gannt.ActualStartDateDay);
+      gannt.GanttBarStart.width = this.getValuePercentageInYear(startEndDateDiff);
 
-      console.log("start after actual StartActualBarStartPosition", this.StartActualBarStartPosition);
-      console.log("start after actual  StartActualBarCapacity", this.StartActualBarCapacity);
-      console.log("start after actual  ProgressBarStartPosition", this.ProgressBarStartPosition);
+      console.log("start after actual StartActualBarStartPosition", gannt.GanttBarStart.position);
+      console.log("start after actual  StartActualBarCapacity", gannt.GanttBarStart.width);
+      console.log("start after actual  ProgressBarStartPosition", gannt.GanttBarProgress.position);
     }
 
 
@@ -104,36 +82,36 @@ export class GanttChartComponent implements OnInit {
 
       if (gannt.ForcastDay > gannt.EndDateDay) {
 
-        this.ProgressBarCapacity = this.getValuePercentageInYear(progressCapacity)
+        gannt.GanttBarProgress.width = this.getValuePercentageInYear(progressCapacity)
 
         if (this.EndProgress >= gannt.EndDateDay) {
-          this.ForcastedBarEndDateBarStartPosition = this.getValuePercentageInYear(this.EndProgress);
-          this.ForcastedBarEndDateBarCapacity = this.getValuePercentageInYear(gannt.ForcastDay - this.EndProgress);
+          gannt.GanttBarForcasted.position = this.getValuePercentageInYear(this.EndProgress);
+          gannt.GanttBarForcasted.width = this.getValuePercentageInYear(gannt.ForcastDay - this.EndProgress);
 
-          this.ProgressBarCapacity = this.getValuePercentageInYear(gannt.EndDateDay - this.StartProgress)
+          gannt.GanttBarProgress.width = this.getValuePercentageInYear(gannt.EndDateDay - this.StartProgress)
 
-          this.EndDateStartPosition = this.getValuePercentageInYear(gannt.EndDateDay);
-          this.EndDateBarCapacity = this.getValuePercentageInYear(this.EndProgress - gannt.EndDateDay);
-          console.log('case endprogress bar > end date ', this.ForcastedBarEndDateBarStartPosition)
+          gannt.GanttBarEnd.position = this.getValuePercentageInYear(gannt.EndDateDay);
+          gannt.GanttBarEnd.width = this.getValuePercentageInYear(this.EndProgress - gannt.EndDateDay);
+          console.log('case endprogress bar > end date ', gannt.GanttBarForcasted.position)
         }
         else if (this.EndProgress < gannt.EndDateDay) {
-          this.ForcastedBarEndDateBarStartPosition = this.getValuePercentageInYear(gannt.EndDateDay);
-          this.ForcastedBarEndDateBarCapacity = this.getValuePercentageInYear(gannt.ForcastDay - gannt.EndDateDay);
+          gannt.GanttBarForcasted.position = this.getValuePercentageInYear(gannt.EndDateDay);
+          gannt.GanttBarForcasted.width = this.getValuePercentageInYear(gannt.ForcastDay - gannt.EndDateDay);
 
-          this.ProgressBarCapacity = this.getValuePercentageInYear(this.EndProgress - this.StartProgress)
+          gannt.GanttBarProgress.width = this.getValuePercentageInYear(this.EndProgress - this.StartProgress)
 
-          this.EndDateStartPosition = this.getValuePercentageInYear(this.EndProgress);
-          this.EndDateBarCapacity = this.getValuePercentageInYear(gannt.EndDateDay - this.EndProgress);
+          gannt.GanttBarEnd.position = this.getValuePercentageInYear(this.EndProgress);
+          gannt.GanttBarEnd.width = this.getValuePercentageInYear(gannt.EndDateDay - this.EndProgress);
         }
       }
       else if (gannt.ForcastDay < gannt.EndDateDay) {
-        this.ForcastedBarEndDateBarStartPosition = this.getValuePercentageInYear(gannt.ForcastDay);
-        this.ForcastedBarEndDateBarCapacity = this.getValuePercentageInYear(gannt.EndDateDay - gannt.ForcastDay);
+        gannt.GanttBarForcasted.position = this.getValuePercentageInYear(gannt.ForcastDay);
+        gannt.GanttBarForcasted.width = this.getValuePercentageInYear(gannt.EndDateDay - gannt.ForcastDay);
 
-        this.ProgressBarCapacity = this.getValuePercentageInYear(this.EndProgress - this.StartProgress)
+        gannt.GanttBarProgress.width = this.getValuePercentageInYear(this.EndProgress - this.StartProgress)
 
-        this.EndDateStartPosition = this.getValuePercentageInYear(this.EndProgress);
-        this.EndDateBarCapacity = this.getValuePercentageInYear(gannt.ForcastDay - this.EndProgress);
+        gannt.GanttBarEnd.position = this.getValuePercentageInYear(this.EndProgress);
+        gannt.GanttBarEnd.width = this.getValuePercentageInYear(gannt.ForcastDay - this.EndProgress);
 
       }
 
@@ -141,94 +119,92 @@ export class GanttChartComponent implements OnInit {
     else {
       if (gannt.ActualEndDateDay == 0) {
 
-        this.EndDateStartPosition = this.getValuePercentageInYear(gannt.EndDateDay);
+        gannt.GanttBarEnd.position = this.getValuePercentageInYear(gannt.EndDateDay);
         var endDateStartPosition = this.StartProgress + this.calculateProgressWidth(gannt.Progress,
           this.StartProgress, gannt.EndDateDay);
 
-        this.EndDateStartPosition = this.getValuePercentageInYear(endDateStartPosition);
-        this.EndDateBarCapacity = this.getValuePercentageInYear(gannt.EndDateDay - endDateStartPosition);
+        gannt.GanttBarEnd.position = this.getValuePercentageInYear(endDateStartPosition);
+        gannt.GanttBarEnd.width = this.getValuePercentageInYear(gannt.EndDateDay - endDateStartPosition);
 
-        this.ProgressBarCapacity = this.getValuePercentageInYear(this.calculateProgressWidth(gannt.Progress,
+        gannt.GanttBarProgress.width = this.getValuePercentageInYear(this.calculateProgressWidth(gannt.Progress,
           this.StartProgress, gannt.EndDateDay))
-        console.log(" no actual end date ProgressBarCapacity till the end date ", this.ProgressBarCapacity)
+        console.log(" no actual end date ProgressBarCapacity till the end date ", gannt.GanttBarProgress.width)
 
       }
       else if (gannt.ActualEndDateDay >= gannt.EndDateDay) {
 
-        this.EndDateStartPosition = this.getValuePercentageInYear(gannt.EndDateDay);
-        this.EndDateBarCapacity = this.getValuePercentageInYear(gannt.ActualEndDateDay - gannt.EndDateDay);
-        this.ProgressBarCapacity = this.getValuePercentageInYear(this.calculateProgressWidth(gannt.Progress,
+        gannt.GanttBarEnd.position = this.getValuePercentageInYear(gannt.EndDateDay);
+        gannt.GanttBarEnd.width = this.getValuePercentageInYear(gannt.ActualEndDateDay - gannt.EndDateDay);
+        gannt.GanttBarProgress.width = this.getValuePercentageInYear(this.calculateProgressWidth(gannt.Progress,
           this.StartProgress, gannt.EndDateDay))
       }
 
       else if (gannt.ActualEndDateDay < gannt.EndDateDay) {
-        this.EndDateStartPosition = this.getValuePercentageInYear(gannt.ActualEndDateDay);
-        this.EndDateBarCapacity = this.getValuePercentageInYear(gannt.EndDateDay - gannt.ActualEndDateDay);
-        this.ProgressBarCapacity = this.getValuePercentageInYear(this.calculateProgressWidth(gannt.Progress,
+        gannt.GanttBarEnd.position = this.getValuePercentageInYear(gannt.ActualEndDateDay);
+        gannt.GanttBarEnd.width = this.getValuePercentageInYear(gannt.EndDateDay - gannt.ActualEndDateDay);
+        gannt.GanttBarProgress.width = this.getValuePercentageInYear(this.calculateProgressWidth(gannt.Progress,
           this.StartProgress, gannt.ActualEndDateDay))
       }
     }
 
-
-    this.calculateGanttStatusColor(gannt);
-    this.setGanttBars(gannt);
   }
 
   calculateGanttStatusColor(gannt: Gantt): any {
 
     if (gannt.ActualStartDateDay == 0) {
-      this.StartActualDifferenceBarColor = "";
-      console.log('empty StartActualDifferenceBarColor', this.StartActualDifferenceBarColor)
+      gannt.GanttBarStart.color = "";
+      console.log('empty StartActualDifferenceBarColor', gannt.GanttBarStart.color)
     }
 
     else if (gannt.StartDateDay >= gannt.ActualStartDateDay) {
-      this.StartActualDifferenceBarColor = (gannt.Status == 1) ? "#588325" : (gannt.Status == 2) ? "#ac6313" : "#b93938";
-      console.log('darker StartActualDifferenceBarColor', this.StartActualDifferenceBarColor)
+      gannt.GanttBarStart.color = (gannt.Status == 1) ? "#588325" : (gannt.Status == 2) ? "#ac6313" : "#b93938";
+      console.log('darker StartActualDifferenceBarColor', gannt.GanttBarStart.color)
 
     }
     else if (gannt.StartDateDay <= gannt.ActualStartDateDay) {
-      this.StartActualDifferenceBarColor = (gannt.Status == 1) ? "#d9ecc3" : (gannt.Status == 2) ? "#f4d9b5" : "#ffc5c7";
-      console.log('lighter StartActualDifferenceBarColor', this.StartActualDifferenceBarColor)
+      gannt.GanttBarStart.color = (gannt.Status == 1) ? "#d9ecc3" : (gannt.Status == 2) ? "#f4d9b5" : "#ffc5c7";
+      console.log('lighter StartActualDifferenceBarColor', gannt.GanttBarStart.color)
     }
 
-    this.ProgressBarColor = (gannt.Status == 1) ? "#7fbe35" : (gannt.Status == 2) ? "#f99a30" : "#ff3f40";
+    gannt.GanttBarProgress.color = (gannt.Status == 1) ? "#7fbe35" : (gannt.Status == 2) ? "#f99a30" : "#ff3f40";
 
-    if (gannt.EndDateDay < gannt.ActualEndDateDay) {
-      this.EndDateBarColor = (gannt.Status == 1) ? "#588325" : (gannt.Status == 2) ? "#ac6313" : "#b93938";
-      console.log('darker EndDateBarColor', this.EndDateBarColor)
-
-    }
-    else if (gannt.ForcastDay == 0 && gannt.ActualEndDateDay == 0) {
+     if (gannt.ForcastDay == 0 && gannt.ActualEndDateDay == 0) {
       //Grey
-      this.EndDateBarColor = (gannt.Status == 1) ? "#cfcfcf" : (gannt.Status == 2) ? "#cfcfcf" : "#cfcfcf";
-      console.log('grey EndDateBarColor', this.EndDateBarColor)
+      gannt.GanttBarEnd.color = (gannt.Status == 1) ? "#cfcfcf" : (gannt.Status == 2) ? "#cfcfcf" : "#cfcfcf";
+      console.log('grey EndDateBarColor', gannt.GanttBarEnd.color)
     }
+    else if (gannt.EndDateDay < gannt.ActualEndDateDay) {
+      gannt.GanttBarEnd.color = (gannt.Status == 1) ? "#588325" : (gannt.Status == 2) ? "#ac6313" : "#b93938";
+      console.log('darker EndDateBarColor', gannt.GanttBarEnd.color)
+
+    }
+
     else if (gannt.EndDateDay > gannt.ActualEndDateDay && gannt.ForcastDay == 0) {
-      this.EndDateBarColor = (gannt.Status == 1) ? "#d9ecc3" : (gannt.Status == 2) ? "#fccd97" : "#ffc5c7";
-      console.log('ligter EndDateBarColor', this.EndDateBarColor)
+      gannt.GanttBarEnd.color = (gannt.Status == 1) ? "#d9ecc3" : (gannt.Status == 2) ? "#fccd97" : "#ffc5c7";
+      console.log('ligter EndDateBarColor', gannt.GanttBarEnd.color)
     }
 
-    else if (gannt.ForcastDay != 0) {
+    if (gannt.ForcastDay != 0) {
+      console.log('gannt bar forcasted color ', gannt.GanttBarForcasted.color);
 
-
-      this.ForcastedEndDateBarColor = (gannt.Status == 1) ? "#ababab" : (gannt.Status == 2) ? "#f4d9b5" : "#7f0000";
+      gannt.GanttBarForcasted.color = (gannt.Status == 1) ? "#ababab" : (gannt.Status == 2) ? "#f4d9b5" : "#7f0000";
 
       if (this.EndProgress > gannt.EndDateDay) {
-        this.EndDateBarColor = (gannt.Status == 1) ? "#324c15" : (gannt.Status == 2) ? "#f4d9b5" : "#FA8072";
-        console.log('dark EndDateBarColor', this.EndDateBarColor)
+        gannt.GanttBarEnd.color = (gannt.Status == 1) ? "#324c15" : (gannt.Status == 2) ? "#f4d9b5" : "#FA8072";
+        console.log('dark EndDateBarColor', gannt.GanttBarEnd.color)
       }
       else if (this.EndProgress < gannt.EndDateDay && gannt.ForcastDay > gannt.EndDateDay) {
-        this.EndDateBarColor = (gannt.Status == 1) ? "#cfcfcf" : (gannt.Status == 2) ? "#cfcfcf" : "#cfcfcf";
-        console.log('lighter EndDateBarColor', this.EndDateBarColor)
+        gannt.GanttBarEnd.color = (gannt.Status == 1) ? "#cfcfcf" : (gannt.Status == 2) ? "#cfcfcf" : "#cfcfcf";
+        console.log('lighter EndDateBarColor', gannt.GanttBarEnd.color)
       }
       else if (this.EndProgress < gannt.ForcastDay && gannt.ForcastDay < gannt.EndDateDay) {
-        this.EndDateBarColor = (gannt.Status == 1) ? "#cfcfcf" : (gannt.Status == 2) ? "#cfcfcf" : "#cfcfcf";
-        console.log('darker EndDateBarColor', this.EndDateBarColor)
+        gannt.GanttBarEnd.color = (gannt.Status == 1) ? "#cfcfcf" : (gannt.Status == 2) ? "#cfcfcf" : "#cfcfcf";
+        console.log('darker EndDateBarColor', gannt.GanttBarEnd.color)
       }
       if (this.EndProgress < gannt.ForcastDay && gannt.ForcastDay < gannt.EndDateDay)
-        this.ForcastedEndDateBarColor = (gannt.Status == 1) ? "#dedede" : (gannt.Status == 2) ? "#dedede" : "#dedede";
+        gannt.GanttBarForcasted.color = (gannt.Status == 1) ? "#dedede" : (gannt.Status == 2) ? "#dedede" : "#dedede";
       else
-        this.ForcastedEndDateBarColor = (gannt.Status == 1) ? "#ababab" : (gannt.Status == 2) ? "#ababab" : "#ababab";
+        gannt.GanttBarForcasted.color = (gannt.Status == 1) ? "#ababab" : (gannt.Status == 2) ? "#ababab" : "#ababab";
     }
 
 
@@ -237,55 +213,43 @@ export class GanttChartComponent implements OnInit {
   }
 
   setGanttBars(gannt: Gantt): any {
-    //Here we need to add logic for each bar to round and set arrows + Tooltip
-    this.GanttBarStart.position = this.StartActualBarStartPosition;
-    this.GanttBarStart.width = this.StartActualBarCapacity;
-    this.GanttBarStart.color = this.StartActualDifferenceBarColor;
-    this.GanttBarStart.direction = this.Direction;
-    this.GanttBarStart.barType = "start";
 
-    this.GanttBarProgress.position = this.ProgressBarStartPosition;
-    this.GanttBarProgress.width = this.ProgressBarCapacity;
-    this.GanttBarProgress.color = this.ProgressBarColor;
-    this.GanttBarProgress.barType = "progress";
-    this.GanttBarProgress.direction = this.Direction;
+    gannt.GanttBarStart.direction = gannt.Direction;
+    gannt.GanttBarStart.barType = "start";
 
-    this.GanttBarEnd.position = this.EndDateStartPosition;
-    this.GanttBarEnd.width = this.EndDateBarCapacity;
-    this.GanttBarEnd.color = this.EndDateBarColor;
-    this.GanttBarEnd.barType = "end";
-    this.GanttBarEnd.direction = this.Direction;
 
-    this.GanttBarForcasted.position = this.ForcastedBarEndDateBarStartPosition;
-    this.GanttBarForcasted.width = this.ForcastedBarEndDateBarCapacity;
-    this.GanttBarForcasted.color = this.ForcastedEndDateBarColor;
-    this.GanttBarForcasted.barType = "forcasted";
-    this.GanttBarForcasted.direction = this.Direction;
+    gannt.GanttBarProgress.barType = "progress";
+    gannt.GanttBarProgress.direction = gannt.Direction;
 
+    gannt.GanttBarEnd.barType = "end";
+    gannt.GanttBarEnd.direction = gannt.Direction;
+
+    gannt.GanttBarForcasted.barType = "forcasted";
+    gannt.GanttBarForcasted.direction = gannt.Direction;
 
   }
 
-  setGanttRound(gantt: Gantt): any {
+  setGanttRound(gannt: Gantt): any {
     var left = "left"
     var right = "right"
-    if (gantt.Direction) {
+    if (gannt.Direction) {
       left = "right"
       right = "left"
     }
 
-    this.GanttBarStart.roundDirecton = left;
-    this.GanttBarForcasted.roundDirecton = right;
+    gannt.GanttBarStart.roundDirecton = left;
+    gannt.GanttBarForcasted.roundDirecton = right;
 
-    if (this.StartActualBarCapacity == 0 && this.EndDateBarCapacity == 0 && this.ForcastedBarEndDateBarCapacity == 0)
-      this.GanttBarProgress.roundDirecton = "both";
+    if (gannt.GanttBarStart.width == 0 && gannt.GanttBarEnd.width == 0 && gannt.GanttBarForcasted.width == 0)
+      gannt.GanttBarProgress.roundDirecton = "both";
 
-    else if (this.StartActualBarCapacity == 0)
-      this.GanttBarProgress.roundDirecton = left;
+    else if (gannt.GanttBarStart.width == 0)
+      gannt.GanttBarProgress.roundDirecton = left;
 
-    if (this.ForcastedBarEndDateBarCapacity == 0)
-      this.GanttBarEnd.roundDirecton = right;
-    else 
-      this.GanttBarForcasted.roundDirecton = right;
+    if (gannt.GanttBarForcasted.width == 0)
+      gannt.GanttBarEnd.roundDirecton = right;
+    else
+      gannt.GanttBarForcasted.roundDirecton = right;
 
   }
 
@@ -297,15 +261,15 @@ export class GanttChartComponent implements OnInit {
       right = "left"
     }
 
-    this.GanttBarStart.arrowDirection = left;
-    this.GanttBarProgress.arrowDirection = left;
-    this.GanttBarEnd.arrowDirection = right;
-    this.GanttBarForcasted.arrowDirection = "both";
+    gannt.GanttBarStart.arrowDirection = left;
+    gannt.GanttBarProgress.arrowDirection = left;
+    gannt.GanttBarEnd.arrowDirection = right;
+    gannt.GanttBarForcasted.arrowDirection = "both";
 
     //Special cases 
     if (gannt.Progress == 100) {
-      this.GanttBarProgress.arrowDirection = "both";
-      this.GanttBarEnd.arrowDirection = "both";
+      gannt.GanttBarProgress.arrowDirection = "both";
+      gannt.GanttBarEnd.arrowDirection = "both";
     }
 
 

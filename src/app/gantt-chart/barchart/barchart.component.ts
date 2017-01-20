@@ -81,6 +81,7 @@ export class BarchartComponent implements OnInit {
   }
 
   setLeftArrow(): any {
+    
     if ((this._bar.arrowDirection == "left" || this._bar.arrowDirection == "both") && this._bar.width != 0)
       return {
         'position': 'absolute',
