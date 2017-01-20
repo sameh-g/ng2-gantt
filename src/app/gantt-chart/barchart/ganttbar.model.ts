@@ -5,6 +5,7 @@ export class GanttBar {
     public direction: boolean = false;
     public arrowDirection: string = '';
     public roundDirecton: string = "";
-    public arrowData: string = "";
+    public leftArrowData: string = "";
+    public rightArrowData: string = "";
     public barType:string=""
 }

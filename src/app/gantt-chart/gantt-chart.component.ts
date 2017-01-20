@@ -213,7 +213,7 @@ export class GanttChartComponent implements OnInit {
 
     gannt.GanttBarStart.direction = gannt.Direction;
     gannt.GanttBarStart.barType = "start";
-
+    gannt.GanttBarStart.leftArrowData="01/20/2017";
 
     gannt.GanttBarProgress.barType = "progress";
     gannt.GanttBarProgress.direction = gannt.Direction;
