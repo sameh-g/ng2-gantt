@@ -17,10 +17,7 @@ export class GanttChartComponent implements OnInit {
     this.Gantt = gantt;
     this.fireGantt(this.Gantt);
   }
-
-  CurrentYear: number = 2016;
-  Direction: boolean = true;
-
+  
   StartProgress: number = 0;
   EndProgress: number = 0;
 
