@@ -12,10 +12,10 @@ export class Gantt {
     ActualStartDateDay: number = 0;
     ActualEndDateDay: number = 0;
     ForcastDay: number = 0;
-    Progress: number;
-    Status: number;
+    Progress: number = 0;
+    Status: number = 0;
     Direction: boolean = true;
-    CurrentYear: number;
+    CurrentYear: number = 2016;
 
     public GanttBarStart: GanttBar;
     public GanttBarProgress: GanttBar;
@@ -26,14 +26,32 @@ export class Gantt {
         ForcastedDate: string, Progress: number, Status: number, Direction: boolean, currentYear: number) {
         this.CurrentYear = currentYear;
         try {
-            if (StartDate == null)
-                this.StartDateDay = 0;
-            if (EndDate == null)
-                this.EndDateDay = 0;
-            if (ActualStartDate == null)
-                this.ActualStartDateDay = 0;
-            if (ForcastedDate == null)
-                this.ForcastDay = 0;
+          
+            if (EndDate == null && ActualEndDate==null) {
+                StartDate = "";
+                ActualStartDate = "";
+            }
+            
+            if (StartDate != "" && StartDate != null) {
+                this.StartDate = new Date(StartDate);
+                this.StartDateDay = this.getDayOfTheYear(this.StartDate);
+            }
+            if (EndDate != "" && EndDate != null) {
+                this.EndDate = new Date(EndDate);
+                this.EndDateDay = this.getDayOfTheYear(this.EndDate);
+            }
+            if (ActualStartDate != "" && ActualStartDate != null) {
+                this.ActualStartDate = new Date(ActualStartDate);
+                this.ActualStartDateDay = this.getDayOfTheYear(this.ActualStartDate);
+            }
+            if (ActualEndDate != "" && ActualEndDate != null) {
+                this.ActualEndDate = new Date(ActualEndDate);
+                this.ActualEndDateDay = this.getDayOfTheYear(this.ActualEndDate);
+            }
+            if (ForcastedDate != "" && ForcastedDate != null) {
+                this.ForcastedDate = new Date(ForcastedDate);
+                this.ForcastDay = this.getDayOfTheYear(this.ForcastedDate);
+            }
             if (Progress == null)
                 this.Progress = 0;
             if (Status == null)
@@ -45,32 +63,11 @@ export class Gantt {
                 ForcastedDate = "";
                 ActualStartDate = ""
             }
-            if (StartDate != "") {
-                this.StartDate = new Date(StartDate);
-                this.StartDateDay = this.getDayOfTheYear(this.StartDate);
-            }
-            if (EndDate != "") {
-                this.EndDate = new Date(EndDate);
-                this.EndDateDay = this.getDayOfTheYear(this.EndDate);
-            }
-            if (ActualStartDate != "") {
-                this.ActualStartDate = new Date(ActualStartDate);
-                this.ActualStartDateDay = this.getDayOfTheYear(this.ActualStartDate);
-            }
-            if (ActualEndDate != "") {
-                this.ActualEndDate = new Date(ActualEndDate);
-                this.ActualEndDateDay = this.getDayOfTheYear(this.ActualEndDate);
-            }
-            if (ForcastedDate != "") {
-                this.ForcastedDate = new Date(ForcastedDate);
-                this.ForcastDay = this.getDayOfTheYear(this.ForcastedDate);
-            }
 
             this.Progress = Progress;
             this.Status = Status;
 
             this.Direction = Direction;
-
 
             this.GanttBarStart = new GanttBar();
             this.GanttBarProgress = new GanttBar();
