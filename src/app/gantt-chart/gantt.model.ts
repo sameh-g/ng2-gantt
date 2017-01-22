@@ -12,6 +12,14 @@ export class Gantt {
     ActualStartDateDay: number = 0;
     ActualEndDateDay: number = 0;
     ForcastDay: number = 0;
+
+    StartDateFormated: string = '';
+    EndDateFormated: string = '';
+    ActualStartDateFormated: string = '';
+    ActualEndDateFormated: string = '';
+    ForcastedDateFormated: string = '';
+
+
     Progress: number = 0;
     Status: number = 0;
     Direction: boolean = true;
@@ -26,31 +34,36 @@ export class Gantt {
         ForcastedDate: string, Progress: number, Status: number, Direction: boolean, currentYear: number) {
         this.CurrentYear = currentYear;
         try {
-          
-            if (EndDate == null && ActualEndDate==null) {
+
+            if (EndDate == null && ActualEndDate == null) {
                 StartDate = "";
                 ActualStartDate = "";
             }
-            
+
             if (StartDate != "" && StartDate != null) {
                 this.StartDate = new Date(StartDate);
                 this.StartDateDay = this.getDayOfTheYear(this.StartDate);
+                this.StartDateFormated = this.dateFormate(this.StartDate);
             }
             if (EndDate != "" && EndDate != null) {
                 this.EndDate = new Date(EndDate);
                 this.EndDateDay = this.getDayOfTheYear(this.EndDate);
+                this.EndDateFormated = this.dateFormate(this.EndDate);
             }
             if (ActualStartDate != "" && ActualStartDate != null) {
                 this.ActualStartDate = new Date(ActualStartDate);
                 this.ActualStartDateDay = this.getDayOfTheYear(this.ActualStartDate);
+                   this.ActualStartDateFormated = this.dateFormate(this.ActualStartDate);
             }
             if (ActualEndDate != "" && ActualEndDate != null) {
                 this.ActualEndDate = new Date(ActualEndDate);
                 this.ActualEndDateDay = this.getDayOfTheYear(this.ActualEndDate);
+                 this.ActualEndDateFormated = this.dateFormate(this.ActualEndDate );
             }
             if (ForcastedDate != "" && ForcastedDate != null) {
                 this.ForcastedDate = new Date(ForcastedDate);
                 this.ForcastDay = this.getDayOfTheYear(this.ForcastedDate);
+                  this.ForcastedDateFormated = this.dateFormate(this.ForcastedDate );
             }
             if (Progress == null)
                 this.Progress = 0;
@@ -96,6 +109,10 @@ export class Gantt {
         var daysDiff = days - dateexpand;
         return daysDiff;
 
+    }
+
+    dateFormate(date: Date) {
+        return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
     }
 
 }
