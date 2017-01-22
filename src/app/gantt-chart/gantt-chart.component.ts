@@ -213,20 +213,21 @@ export class GanttChartComponent implements OnInit {
 
     gannt.GanttBarStart.direction = gannt.Direction;
     gannt.GanttBarStart.barType = "start";
+    
     gannt.GanttBarStart.leftArrowData="  Start Date  "+ gannt.StartDateFormated;
+    gannt.GanttBarStart.rightArrowData=" Actual Start Date  "+ gannt.ActualStartDateFormated;
 
     gannt.GanttBarProgress.barType = "progress";
     gannt.GanttBarProgress.direction = gannt.Direction;
-    gannt.GanttBarProgress.leftArrowData="  progress   ";
 
     gannt.GanttBarEnd.barType = "end";
     gannt.GanttBarEnd.direction = gannt.Direction;
-    gannt.GanttBarEnd.leftArrowData="  End Date  "+ gannt.ActualEndDateFormated;
+    gannt.GanttBarEnd.rightArrowData="  End Date  "+ gannt.ActualEndDateFormated;
 
     gannt.GanttBarForcasted.barType = "forcasted";
     gannt.GanttBarForcasted.direction = gannt.Direction;
-    gannt.GanttBarForcasted.leftArrowData="  forcasted Date  "+ gannt.ForcastedDateFormated;
-    
+    gannt.GanttBarForcasted.rightArrowData="  forcasted Date  "+ gannt.ForcastedDateFormated;
+
 
   }
 

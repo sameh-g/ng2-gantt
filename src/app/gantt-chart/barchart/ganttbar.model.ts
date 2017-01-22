@@ -8,4 +8,5 @@ export class GanttBar {
     public leftArrowData: string = "";
     public rightArrowData: string = "";
     public barType:string=""
+    public barData:string="";
 }
