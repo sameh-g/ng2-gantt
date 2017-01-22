@@ -1,14 +1,14 @@
 <span class="ganttBar " [@flyInOut]="'in'" [ngStyle]="setStyle()">
  
- <span [ngStyle]="setRightArrow()" ><i class="fa fa-sort-desc" aria-hidden="true"></i></span>
-<span [ngStyle]="setLeftArrow()"><i class="fa fa-sort-desc" aria-hidden="true"></i></span>
+<span [ngStyle]="setRightArrow()" class="arrowCont rightArrowCont">
+  <i class="fa fa-sort-desc" aria-hidden="true"></i>
+  <span class="arrtoolTip">{{_bar.rightArrowData}}</span>
+</span>
+<span [ngStyle]="setLeftArrow()" class="arrowCont leftArrowCont">
+  <i class="fa fa-sort-desc" aria-hidden="true"></i>
+  <span class="arrtoolTip">{{_bar.leftArrowData}}</span>
+  </span>
+
+<span class="pull-right">{{_bar.barData}}</span>
 
 </span>
-<div class="tooltip">{{_bar.barType}}
-
-  <span class="tooltiptext"> 
-{{_bar.barData}}
-{{_bar.leftArrowData}}
-{{_bar.rightArrowData}}
-  </span>
-</div>
