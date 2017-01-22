@@ -37,6 +37,9 @@ export class BarchartComponent implements OnInit {
 
   setStyle(): any {
     if (this._bar.direction) {
+
+
+
       return {
         'background-color': this._bar.color,
         'width': this._bar.width.toString() + '%',
@@ -59,7 +62,9 @@ export class BarchartComponent implements OnInit {
 
   setRightArrow(): any {
 
-    if ((this._bar.arrowDirection == "right" || this._bar.arrowDirection == "both") && this._bar.width != 0)
+    if ((this._bar.arrowDirection == "right" || this._bar.arrowDirection == "both") && this._bar.width != 0) {
+
+
       return {
         'position': 'absolute',
         'visibility': 'visible',
@@ -67,6 +72,7 @@ export class BarchartComponent implements OnInit {
         'width': "16px",
         'right': "-8px"
       }
+    }
     else {
       return {
         'position': 'absolute',
@@ -81,7 +87,7 @@ export class BarchartComponent implements OnInit {
   }
 
   setLeftArrow(): any {
-    
+
     if ((this._bar.arrowDirection == "left" || this._bar.arrowDirection == "both") && this._bar.width != 0)
       return {
         'position': 'absolute',
@@ -115,10 +121,16 @@ export class BarchartComponent implements OnInit {
 
 
   ngOnInit() {
+
   }
 
 
   @Input('ganttbar') set bar(bar) {
     this._bar = bar;
+    if (this._bar.direction) {
+      var leftArrow = this._bar.leftArrowData;
+      this._bar.leftArrowData = this._bar.rightArrowData;
+      this._bar.rightArrowData = leftArrow;
+    }
   }
 }

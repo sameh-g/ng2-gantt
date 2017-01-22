@@ -17,7 +17,7 @@ export class GanttChartComponent implements OnInit {
     this.Gantt = gantt;
     this.fireGantt(this.Gantt);
   }
-  
+
   StartProgress: number = 0;
   EndProgress: number = 0;
 
@@ -42,8 +42,10 @@ export class GanttChartComponent implements OnInit {
 
     if (gannt.ActualStartDateDay == 0) {
       gannt.GanttBarProgress.position = this.getValuePercentageInYear(gannt.StartDateDay);
+      gannt.GanttBarProgress.leftArrowData = "Start Date  " + gannt.StartDateFormated;
+
       this.StartProgress = gannt.StartDateDay;
-      console.log("ProgressBarStartPosition", gannt.GanttBarProgress.position);
+
     }
     else if (gannt.StartDateDay <= gannt.ActualStartDateDay) {
       var startActualDateDiff = gannt.ActualStartDateDay - gannt.StartDateDay;
@@ -53,9 +55,9 @@ export class GanttChartComponent implements OnInit {
       gannt.GanttBarStart.position = this.getValuePercentageInYear(gannt.StartDateDay);
       gannt.GanttBarStart.width = this.getValuePercentageInYear(startActualDateDiff);
 
-      console.log("actual after start StartActualBarStartPosition", gannt.GanttBarStart.position);
-      console.log("actual after start  StartActualBarCapacity", gannt.GanttBarStart.width);
-      console.log("actual after start  ProgressBarStartPosition", gannt.GanttBarProgress.position);
+      gannt.GanttBarStart.leftArrowData = "Start Date  " + gannt.StartDateFormated;
+      gannt.GanttBarProgress.leftArrowData = "Actuale Start Date " + gannt.ActualStartDateFormated;
+
     }
 
     else if (gannt.StartDateDay >= gannt.ActualStartDateDay) {
@@ -66,9 +68,9 @@ export class GanttChartComponent implements OnInit {
       gannt.GanttBarStart.position = this.getValuePercentageInYear(gannt.ActualStartDateDay);
       gannt.GanttBarStart.width = this.getValuePercentageInYear(startEndDateDiff);
 
-      console.log("start after actual StartActualBarStartPosition", gannt.GanttBarStart.position);
-      console.log("start after actual  StartActualBarCapacity", gannt.GanttBarStart.width);
-      console.log("start after actual  ProgressBarStartPosition", gannt.GanttBarProgress.position);
+      gannt.GanttBarProgress.leftArrowData = "Start Date  " + gannt.StartDateFormated;
+      gannt.GanttBarStart.leftArrowData = "Actuale Start Date " + gannt.ActualStartDateFormated;
+
     }
 
 
@@ -89,7 +91,9 @@ export class GanttChartComponent implements OnInit {
 
           gannt.GanttBarEnd.position = this.getValuePercentageInYear(gannt.EndDateDay);
           gannt.GanttBarEnd.width = this.getValuePercentageInYear(this.EndProgress - gannt.EndDateDay);
-          console.log('case endprogress bar > end date ', gannt.GanttBarForcasted.position)
+
+           gannt.GanttBarForcasted.leftArrowData = "End Date  " + gannt.EndDateFormated;
+
         }
         else if (this.EndProgress < gannt.EndDateDay) {
           gannt.GanttBarForcasted.position = this.getValuePercentageInYear(gannt.EndDateDay);
@@ -99,7 +103,11 @@ export class GanttChartComponent implements OnInit {
 
           gannt.GanttBarEnd.position = this.getValuePercentageInYear(this.EndProgress);
           gannt.GanttBarEnd.width = this.getValuePercentageInYear(gannt.EndDateDay - this.EndProgress);
+
+          gannt.GanttBarForcasted.leftArrowData = "End Date  " + gannt.EndDateFormated;
+
         }
+        gannt.GanttBarForcasted.rightArrowData = "Forcasted Date  " + gannt.ForcastedDateFormated;
       }
       else if (gannt.ForcastDay < gannt.EndDateDay) {
         gannt.GanttBarForcasted.position = this.getValuePercentageInYear(gannt.ForcastDay);
@@ -109,6 +117,9 @@ export class GanttChartComponent implements OnInit {
 
         gannt.GanttBarEnd.position = this.getValuePercentageInYear(this.EndProgress);
         gannt.GanttBarEnd.width = this.getValuePercentageInYear(gannt.ForcastDay - this.EndProgress);
+
+        gannt.GanttBarForcasted.rightArrowData = "End Date " + gannt.EndDateFormated;
+        gannt.GanttBarForcasted.leftArrowData = "Forcasted Date " + gannt.ForcastedDateFormated;
 
       }
 
@@ -125,7 +136,8 @@ export class GanttChartComponent implements OnInit {
 
         gannt.GanttBarProgress.width = this.getValuePercentageInYear(this.calculateProgressWidth(gannt.Progress,
           this.StartProgress, gannt.EndDateDay))
-        console.log(" no actual end date ProgressBarCapacity till the end date ", gannt.GanttBarProgress.width)
+
+        gannt.GanttBarEnd.rightArrowData = "End Date  " + gannt.EndDateFormated;
 
       }
       else if (gannt.ActualEndDateDay >= gannt.EndDateDay) {
@@ -134,6 +146,10 @@ export class GanttChartComponent implements OnInit {
         gannt.GanttBarEnd.width = this.getValuePercentageInYear(gannt.ActualEndDateDay - gannt.EndDateDay);
         gannt.GanttBarProgress.width = this.getValuePercentageInYear(this.calculateProgressWidth(gannt.Progress,
           this.StartProgress, gannt.EndDateDay))
+
+        gannt.GanttBarEnd.rightArrowData = "Actual End Date  " + gannt.ActualEndDateFormated;
+        gannt.GanttBarEnd.leftArrowData = "End Date  " + gannt.EndDateFormated;
+
       }
 
       else if (gannt.ActualEndDateDay < gannt.EndDateDay) {
@@ -141,6 +157,9 @@ export class GanttChartComponent implements OnInit {
         gannt.GanttBarEnd.width = this.getValuePercentageInYear(gannt.EndDateDay - gannt.ActualEndDateDay);
         gannt.GanttBarProgress.width = this.getValuePercentageInYear(this.calculateProgressWidth(gannt.Progress,
           this.StartProgress, gannt.ActualEndDateDay))
+
+        gannt.GanttBarEnd.leftArrowData = "Actual End Date  " + gannt.ActualEndDateFormated;
+        gannt.GanttBarEnd.rightArrowData = "End Date  " + gannt.EndDateFormated;
       }
     }
 
@@ -165,7 +184,7 @@ export class GanttChartComponent implements OnInit {
 
     gannt.GanttBarProgress.color = (gannt.Status == 1) ? "#7fbe35" : (gannt.Status == 2) ? "#f99a30" : "#ff3f40";
 
-     if (gannt.ForcastDay == 0 && gannt.ActualEndDateDay == 0) {
+    if (gannt.ForcastDay == 0 && gannt.ActualEndDateDay == 0) {
       //Grey
       gannt.GanttBarEnd.color = (gannt.Status == 1) ? "#cfcfcf" : (gannt.Status == 2) ? "#cfcfcf" : "#cfcfcf";
       console.log('grey EndDateBarColor', gannt.GanttBarEnd.color)
@@ -213,23 +232,17 @@ export class GanttChartComponent implements OnInit {
 
     gannt.GanttBarStart.direction = gannt.Direction;
     gannt.GanttBarStart.barType = "start";
-    
-    gannt.GanttBarStart.leftArrowData="  Start Date  "+ gannt.StartDateFormated;
-    gannt.GanttBarStart.rightArrowData=" Actual Start Date  "+ gannt.ActualStartDateFormated;
-    
+
+
     gannt.GanttBarProgress.barType = "progress";
     gannt.GanttBarProgress.direction = gannt.Direction;
-    gannt.GanttBarProgress.barData=gannt.Progress.toString()+"%"
+    gannt.GanttBarProgress.barData = gannt.Progress.toString() + "%"
 
     gannt.GanttBarEnd.barType = "end";
     gannt.GanttBarEnd.direction = gannt.Direction;
-    gannt.GanttBarEnd.rightArrowData="  End Date  "+ gannt.ActualEndDateFormated;
 
     gannt.GanttBarForcasted.barType = "forcasted";
     gannt.GanttBarForcasted.direction = gannt.Direction;
-    gannt.GanttBarForcasted.rightArrowData="  forcasted Date  "+ gannt.ForcastedDateFormated;
-
-
   }
 
   setGanttRound(gannt: Gantt): any {
@@ -259,6 +272,7 @@ export class GanttChartComponent implements OnInit {
   setGanttArrows(gannt: Gantt): any {
     var left = "left"
     var right = "right"
+
     if (gannt.Direction) {
       left = "right"
       right = "left"
@@ -273,8 +287,8 @@ export class GanttChartComponent implements OnInit {
     if (gannt.Progress == 100) {
       gannt.GanttBarProgress.arrowDirection = "both";
       gannt.GanttBarEnd.arrowDirection = "both";
+      gannt.GanttBarProgress.rightArrowData="End Date " +gannt.EndDateFormated;
     }
-
 
 
   }
@@ -285,10 +299,8 @@ export class GanttChartComponent implements OnInit {
   }
 
   calculateProgressWidth(progress: number, start: number, end: number): any {
-    // console.log('progress,start,end', progress, start, end)
     var capacity = end - start;
     var progress = ((progress * capacity) / 100) //+ start
-    //  console.log('prgress', progress);
     return progress;
 
   }
